@@ -1,6 +1,7 @@
 {
   "name": "immers-home",
   "version": "0.1.0",
+  "homepage": "https://immers-space.github.io/immers-home/",
   "private": true,
   "dependencies": {
     "@react-three/drei": "^8.13.1",
