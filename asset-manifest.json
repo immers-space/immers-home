@@ -1,15 +1,17 @@
 {
   "files": {
     "main.css": "/immers-home/static/css/main.dee3e85a.css",
-    "main.js": "/immers-home/static/js/main.4107d5e9.js",
+    "main.js": "/immers-home/static/js/main.3df5ac29.js",
     "static/js/787.92592df9.chunk.js": "/immers-home/static/js/787.92592df9.chunk.js",
+    "static/media/Apartment 1.glb": "/immers-home/static/media/Apartment 1.77f02a50d235c53bd00c.glb",
+    "static/media/Apartment 1 roof.glb": "/immers-home/static/media/Apartment 1 roof.11f3f313de73afae431e.glb",
     "index.html": "/immers-home/index.html",
     "main.dee3e85a.css.map": "/immers-home/static/css/main.dee3e85a.css.map",
-    "main.4107d5e9.js.map": "/immers-home/static/js/main.4107d5e9.js.map",
+    "main.3df5ac29.js.map": "/immers-home/static/js/main.3df5ac29.js.map",
     "787.92592df9.chunk.js.map": "/immers-home/static/js/787.92592df9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.dee3e85a.css",
-    "static/js/main.4107d5e9.js"
+    "static/js/main.3df5ac29.js"
   ]
 }
