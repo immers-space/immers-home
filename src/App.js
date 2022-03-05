@@ -3,6 +3,9 @@ import { Suspense, useLayoutEffect } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { ScrollControls, Sky, useScroll, useGLTF } from '@react-three/drei'
 
+import apartment from './assets/Apartment 1.glb'
+import roof from "./assets/Apartment 1 roof.glb"
+
 export default function App() {
   return (
     <Canvas dpr={[1, 2]} shadows camera={{ position: [0, 0, 10], near: 0.1, far: 1000 }}>
@@ -26,7 +29,7 @@ export default function App() {
 function Apartment({ ...props }) {
   // This hook gives you offets, ranges and other useful things
   const scroll = useScroll()
-  const { scene, nodes } = useGLTF('/Apartment 1.glb')
+  const { scene, nodes } = useGLTF(apartment)
   // const { actions } = useAnimations(animations, scene)
   useLayoutEffect(() => Object.values(nodes).forEach((node) => (node.receiveShadow = node.castShadow = true)))
   // useEffect(() => void (actions['Take 001'].play().paused = true), [actions])
@@ -42,7 +45,7 @@ function Apartment({ ...props }) {
 }
 
 function Roof({...props}) {
-  const { scene, nodes } = useGLTF('/Apartment 1 roof.glb')
+  const { scene, nodes } = useGLTF(roof)
   useLayoutEffect(() => Object.values(nodes).forEach((node) => {
     if (node.material) {
       node.material.transparent = true
@@ -52,5 +55,5 @@ function Roof({...props}) {
   return <primitive object={scene} {...props} />
 }
 
-useGLTF.preload('/Apartment 1.glb')
-useGLTF.preload('/Apartment 1 roof.glb')
+useGLTF.preload(apartment)
+useGLTF.preload(roof)
