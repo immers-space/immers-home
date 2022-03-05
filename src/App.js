@@ -1,7 +1,7 @@
-import * as THREE from 'three'
-import { Suspense, useEffect, useLayoutEffect } from 'react'
+// import * as THREE from 'three'
+import { Suspense, useLayoutEffect } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { ScrollControls, Sky, useScroll, useGLTF, useAnimations } from '@react-three/drei'
+import { ScrollControls, Sky, useScroll, useGLTF } from '@react-three/drei'
 
 export default function App() {
   return (
@@ -26,8 +26,8 @@ export default function App() {
 function Apartment({ ...props }) {
   // This hook gives you offets, ranges and other useful things
   const scroll = useScroll()
-  const { scene, nodes, animations } = useGLTF('/Apartment 1.glb')
-  const { actions } = useAnimations(animations, scene)
+  const { scene, nodes } = useGLTF('/Apartment 1.glb')
+  // const { actions } = useAnimations(animations, scene)
   useLayoutEffect(() => Object.values(nodes).forEach((node) => (node.receiveShadow = node.castShadow = true)))
   // useEffect(() => void (actions['Take 001'].play().paused = true), [actions])
   useFrame((state, delta) => {
@@ -42,7 +42,7 @@ function Apartment({ ...props }) {
 }
 
 function Roof({...props}) {
-  const { scene, nodes, animations } = useGLTF('/Apartment 1 roof.glb')
+  const { scene, nodes } = useGLTF('/Apartment 1 roof.glb')
   useLayoutEffect(() => Object.values(nodes).forEach((node) => {
     if (node.material) {
       node.material.transparent = true
