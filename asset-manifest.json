@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.dee3e85a.css",
-    "main.js": "/static/js/main.ef6b79b8.js",
-    "static/js/787.92592df9.chunk.js": "/static/js/787.92592df9.chunk.js",
-    "index.html": "/index.html",
-    "main.dee3e85a.css.map": "/static/css/main.dee3e85a.css.map",
-    "main.ef6b79b8.js.map": "/static/js/main.ef6b79b8.js.map",
-    "787.92592df9.chunk.js.map": "/static/js/787.92592df9.chunk.js.map"
+    "main.css": "/immers-home/static/css/main.dee3e85a.css",
+    "main.js": "/immers-home/static/js/main.4107d5e9.js",
+    "static/js/787.92592df9.chunk.js": "/immers-home/static/js/787.92592df9.chunk.js",
+    "index.html": "/immers-home/index.html",
+    "main.dee3e85a.css.map": "/immers-home/static/css/main.dee3e85a.css.map",
+    "main.4107d5e9.js.map": "/immers-home/static/js/main.4107d5e9.js.map",
+    "787.92592df9.chunk.js.map": "/immers-home/static/js/787.92592df9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.dee3e85a.css",
-    "static/js/main.ef6b79b8.js"
+    "static/js/main.4107d5e9.js"
   ]
 }
