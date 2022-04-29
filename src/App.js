@@ -1,10 +1,9 @@
-// import * as THREE from 'three'
 import { Suspense, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { CatmullRomCurve3, Vector3 } from 'three'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { ScrollControls, Sky, useScroll, useGLTF } from '@react-three/drei'
 
 import apartment from './assets/Immers Home.glb'
-import { CatmullRomCurve3, Vector3 } from 'three'
 
 const alphaName = (a, b) => {
   if (a.name < b.name) {
@@ -44,7 +43,7 @@ function Apartment({ setWaypoints, hideRoof, ...props }) {
     Object.values(nodes).forEach((node) => {
       // node.receiveShadow = node.castShadow = true
       if (node.userData?.gltfExtensions?.MOZ_hubs_components?.waypoint) {
-        waypointNodes.push(node)
+        waypointNodes.push(node.clone().rotateOnWorldAxis(new Vector3(0, 1, 0), Math.PI))
       }
       if (node.name === 'roof') {
         roof.current = node
@@ -65,7 +64,6 @@ function Apartment({ setWaypoints, hideRoof, ...props }) {
 function WaypointPath({waypoints, height, ...props}) {
   const geo = useRef()
   const curve = useRef()
-  const target = useRef(new Vector3())
   const scroll = useScroll()
 
   useEffect(() => {
@@ -81,11 +79,16 @@ function WaypointPath({waypoints, height, ...props}) {
       return
     }
     const t = scroll.offset
-    curve.current.getPointAt(t, state.camera.position)
+    curve.current.getPoint(t, state.camera.position)
     state.camera.position.y += height
-    curve.current.getTangentAt(t, target.current)
-    target.current.add(state.camera.position)
-    state.camera.lookAt(target.current)
+    const segments = waypoints.length - 1;
+    const pickLast = Math.floor(t * segments);
+    const pickNext = pickLast + 1;
+    state.camera.quaternion.slerpQuaternions(
+      waypoints[pickLast].quaternion,
+      waypoints[pickNext].quaternion,
+      scroll.range(pickLast / segments, 1 / segments)
+    );
   })
   return (
     <line position={[0, 0.2, 0]} frustumCulled={false} {...props}>
