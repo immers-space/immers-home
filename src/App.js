@@ -8,6 +8,7 @@ import apartment from './assets/Immers Home.glb'
 import logoDark from './assets/immers logo dark.png'
 
 const waveObjName = "Assembly-2001_5";
+const debug = false;
 
 const alphaName = (a, b) => {
   if (a.name < b.name) {
@@ -48,7 +49,7 @@ export default function App() {
               />
               {waypoints.length && (
                 <>
-                  <WaypointPath waypoints={waypoints} height={1.2}  />
+                  <WaypointPath waypoints={waypoints} height={1.2} debug={debug} />
                   <AtWaypoint waypoints={waypoints} i={1} height={1.2} offset={2} before={0.63} after={0.2}>
                     <h3>Boutique 3D Web development with a purpose</h3>
                     <p>
@@ -76,6 +77,22 @@ export default function App() {
                       performance artist Tiffany Trenda bring her Un/Seen performance to a virtual audience or{" "}
                       <a href="https://web.immers.space/consulting">get started with Immers Space consulting</a>.
                     </p>
+                  </AtWaypoint>
+                  <AtWaypoint waypoints={waypoints} i={3} offset={1.5} height={1.2} before={0.2} after={0.1}>
+                    <h3>Free Software for a Free Metaverse</h3>
+                    <p>
+                      We're dissapointed in the state of the Social Web.
+                      We believe that closed platforms designed to manipulate and sell our attention
+                      bring out the very worst in us, and that the rigid demands of centralized algorithms
+                      and app store reviews stifle creativity and freedom.
+                    </p>
+                    <p>
+                      Our solution is free, open-source, standards-based, self-hostable, and federated.
+                      Immers software empowers any creator to join a decentralized Immersive Web network
+                      without needing anyone's permission. Connections between immers arise from natural
+                      human interaction when immersers discover your site and share it with their friends.
+                    </p>
+                    <p><a href="https://github.com/immers-space">Learn how to connect your project to the metaverse.</a></p>
                   </AtWaypoint>
                 </>
               )}
@@ -177,6 +194,23 @@ function AtWaypoint({waypoints, i, height, offset, before, after, children, ...p
     group.quaternion.copy(waypoint.quaternion)
     group.translateZ(-1 * (offset ?? 1))
   }, [waypoint, height, offset])
+  // update hash when scrolling
+  useEffect(() => {
+    if (visible) {
+      window.location.hash = `waypoint${i}`;
+    }
+  }, [visible, i])
+  // scroll to this waypoint based on hash at pageload
+  useEffect(() => {
+    if (window.location.hash === `#waypoint${i}`) {
+      // needs a small delay after loda or else the scroll damping goes wild
+      const timer = window.setTimeout(() => {
+        scroll.offset = i / (waypoints.length)
+        scroll.el.scrollTop = (i / (waypoints.length)) * scroll.el.scrollHeight;
+      }, 100)
+      return () => window.clearTimeout(timer);
+    }
+  }, [waypoints, i, scroll])
   useFrame(() => {
     const segments = waypoints.length - 1
     setVisible(scroll.visible((i - before)  / segments, (before + after) / segments))
