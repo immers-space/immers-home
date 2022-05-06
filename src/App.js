@@ -65,7 +65,7 @@ export default function App() {
                       <a href="https://web.immers.space/about-us">Learn more about our company</a>
                     </p>
                   </AtWaypoint>
-                  <AtWaypoint waypoints={waypoints} i={2} height={0.4} offset={2} before={0.45} after={0.075}>
+                  <AtWaypoint waypoints={waypoints} i={2} height={0.45} offset={2} before={0.45} after={0.075}>
                     <h3>Your Immersive Web vision, realized</h3>
                     <p>
                       As industry veterans with expertise in three.js, Babylon JS, A-Frame, Hubs, React Three Fiber, and more,
@@ -78,7 +78,7 @@ export default function App() {
                       <a href="https://web.immers.space/consulting">get started with Immers Space consulting</a>.
                     </p>
                   </AtWaypoint>
-                  <AtWaypoint waypoints={waypoints} i={3} offset={1.5} height={1.2} before={0.2} after={0.1}>
+                  <AtWaypoint waypoints={waypoints} i={3} offset={2} height={1.2} before={0.2} after={0.1}>
                     <h3>Free Software for a Free Metaverse</h3>
                     <p>
                       We're dissapointed in the state of the Social Web.
