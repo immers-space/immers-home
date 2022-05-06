@@ -1,8 +1,17 @@
+@font-face {
+  font-family: 'AlegreyaSansSC';
+  src: url(./assets/AlegreyaSansSC-Regular.ttf) format('truetype');
+}
+
 html, body, #root {
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
+}
+
+.cursor-pointer #root {
+  cursor: pointer;
 }
 
 body {
@@ -17,4 +26,69 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+h1 {
+  font-family: 'AlegreyaSansSC', sans-serif;
+  text-align: center;
+  margin-top: 200px;
+  font-size: 96px;
+  color: #052464;
+  margin-bottom: 0px;
+}
+
+h1 img {
+  height: 96px;
+  vertical-align: text-bottom;
+}
+
+p {
+  text-align: center;
+  margin-top: 0;
+}
+
+.pointer {
+  display: inline-block;
+  animation-name: floating;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+.html3d {
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 2px solid #052464;
+  border-radius: 5px;
+  padding: 5px;
+  max-width: min(700px, 95vw);
+  font-size: 20px;
+}
+
+.html3d h4, .html3d h3, .html3d h2 {
+  text-align: center;
+}
+
+.html3d p {
+  text-align: justify;
+}
+
+.overlay {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.overlay iframe {
+  max-width: 90%;
+  max-height: 90%;
+}
+
+
+@keyframes floating {
+  0% { transform: translate(0,  -3px); }
+  50%  { transform: translate(0, 3px); }
+  100%   { transform: translate(0, -3px); }
 }
