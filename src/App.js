@@ -1,29 +1,22 @@
-import { Suspense, useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { CatmullRomCurve3, Vector3 } from 'three'
+import { Suspense, useEffect, useRef, useState } from 'react'
+import { CatmullRomCurve3 } from 'three'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { ScrollControls, Sky, useScroll, useGLTF, Scroll, Html } from '@react-three/drei'
+import { ScrollControls, Sky, useScroll, Scroll, Html } from '@react-three/drei'
 import { useSpring, animated } from '@react-spring/three'
 
-import apartment from './assets/Immers Home.glb'
+import Apartment from './Apartment'
+
 import logoDark from './assets/immers logo dark.png'
 
 const waveObjName = "Assembly-2001_5";
 const debug = false;
 
-const alphaName = (a, b) => {
-  if (a.name < b.name) {
-    return -1
-  }
-  if (a.name > b.name) {
-    return 1
-  }
-  return 0
-}
+
 
 export default function App() {
   const [waypoints, setWaypoints] = useState([]);
   const [showUnseenVideo, setShowUnseenVideo] = useState(false)
-  const handleAptClick = (event) => {
+  const handleWaveClick = (event) => {
     if (event.object.name === waveObjName) {
       event.stopPropagation();
       setShowUnseenVideo(true)
@@ -44,7 +37,7 @@ export default function App() {
           <ScrollControls pages={waypoints.length}>
             <group>
               <Apartment
-                onClick={handleAptClick}
+                handleWaveClick={handleWaveClick}
                 setWaypoints={setWaypoints} scale={1} position={[0, 0, 0]}
               />
               {waypoints.length && (
@@ -113,32 +106,6 @@ export default function App() {
         </div>
       )}
     </>
-  )
-}
-
-function Apartment({ setWaypoints, hideRoof,  ...props }) {
-  const { scene, nodes } = useGLTF(apartment)
-  const roof = useRef();
-  useLayoutEffect(() => {
-    const waypointNodes = []
-    Object.values(nodes).forEach((node) => {
-      // node.receiveShadow = node.castShadow = true
-      if (node.userData?.gltfExtensions?.MOZ_hubs_components?.waypoint) {
-        waypointNodes.push(node.clone().rotateOnWorldAxis(new Vector3(0, 1, 0), Math.PI))
-      }
-      if (node.name === 'roof') {
-        roof.current = node
-        roof.current.visible = !hideRoof
-      }
-    })
-    waypointNodes.sort(alphaName)
-    setWaypoints(waypointNodes)
-  }, [nodes, setWaypoints, hideRoof])
-
-  return (
-    <group>
-      <primitive object={scene} {...props} />
-    </group>
   )
 }
 
@@ -223,5 +190,3 @@ function AtWaypoint({waypoints, i, height, offset, before, after, children, ...p
     </animated.group>
   )
 }
-
-useGLTF.preload(apartment)
