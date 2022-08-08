@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useRef, useState } from 'react'
+import { Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import c from "classnames"
 import { CatmullRomCurve3 } from 'three'
 import { Canvas, useFrame } from '@react-three/fiber'
@@ -43,8 +43,8 @@ export default function App() {
               {waypoints.length && (
                 <>
                   <WaypointPath waypoints={waypoints} height={1.2} debug={debug} />
-                  <AtWaypoint waypoints={waypoints} i={1} height={1.2} offset={2} before={0.11} after={0.35}>
-                    <h3>Boutique 3D Web development with a purpose</h3>
+                  <AtWaypoint waypoints={waypoints} i={1} height={1.2} offset={2} before={0.11} after={0.35}
+                              heading='Boutique 3D Web development with a purpose'>
                     <p>
                       We dream of a democratized new era of the Web where creators own their content,
                       users own their data, and no single entity exhibits undue influence on the community as a whole.
@@ -58,8 +58,8 @@ export default function App() {
                       <a href="https://web.immers.space/about-us">Learn more about our company</a>
                     </p>
                   </AtWaypoint>
-                  <AtWaypoint waypoints={waypoints} i={2} height={0.45} offset={2} before={0.45} after={0.075}>
-                    <h3>Your Immersive Web vision, realized</h3>
+                  <AtWaypoint waypoints={waypoints} i={2} height={0.45} offset={2} before={0.45} after={0.075}
+                              heading='Your Immersive Web vision, realized'>
                     <p>
                       As industry veterans with expertise in three.js, Babylon JS, A-Frame, Hubs, React Three Fiber, and more,
                       we can make your interactive experience come to life on the Web, working instantly on any device
@@ -71,8 +71,8 @@ export default function App() {
                       <a href="https://web.immers.space/consulting">get started with Immers Space consulting</a>.
                     </p>
                   </AtWaypoint>
-                  <AtWaypoint waypoints={waypoints} i={3} offset={2} height={1.2} before={0.2} after={0.1}>
-                    <h3>Free Software for a Free Metaverse</h3>
+                  <AtWaypoint waypoints={waypoints} i={3} offset={2} height={1.2} before={0.2} after={0.1}
+                              heading='Free Software for a Free Metaverse'>
                     <p>
                       We're dissapointed in the state of the Social Web.
                       We believe that closed platforms designed to manipulate and sell our attention
@@ -92,10 +92,10 @@ export default function App() {
             </group>
             <Scroll html style={{ width: '100%' }}>
               <h1>
-                <img src={logoDark} alt="Immers Space logo" />
+                <img src={logoDark} alt="" />
                 Immers Space
               </h1>
-              <p>Scroll to explore <span className="pointer">👇</span></p>
+              <p aria-hidden='true'>Scroll to explore <span className="pointer">👇</span></p>
             </Scroll>
           </ScrollControls>
         </Suspense>
@@ -147,12 +147,19 @@ function WaypointPath({waypoints, height, debug, ...props}) {
   )
 }
 
-function AtWaypoint({waypoints, i, height, offset, before, after, children, ...props}) {
+function AtWaypoint({waypoints, i, height, offset, before, after, heading, children, ...props}) {
   const waypoint = waypoints[i]
   const ref = useRef()
   const scroll = useScroll()
   const [visible, setVisible] = useState(false)
   const scrollContainer = useRef(scroll.fixed)
+  const scrollTo = useCallback(() => {
+    scroll.offset = i / (waypoints.length)
+    scroll.el.scrollTop = (i / (waypoints.length)) * scroll.el.scrollHeight;
+  }, [scroll, i, waypoints])
+  const handleFocus = useCallback(() => {
+    window.location.hash = `waypoint${i}`;
+  }, [i])
   useEffect(() => {
     const group = ref.current
     group.position.copy(waypoint.position)
@@ -169,22 +176,34 @@ function AtWaypoint({waypoints, i, height, offset, before, after, children, ...p
   // scroll to this waypoint based on hash at pageload
   useEffect(() => {
     if (window.location.hash === `#waypoint${i}`) {
-      // needs a small delay after loda or else the scroll damping goes wild
-      const timer = window.setTimeout(() => {
-        scroll.offset = i / (waypoints.length)
-        scroll.el.scrollTop = (i / (waypoints.length)) * scroll.el.scrollHeight;
-      }, 100)
-      return () => window.clearTimeout(timer);
+      // needs a small delay after page load or else the scroll damping goes wild
+      const timer = window.setTimeout(scrollTo, 100)
+      return () => window.clearTimeout(timer)
     }
-  }, [waypoints, i, scroll])
+  }, [i, scrollTo])
+  // scroll to this paypoint based on hashchange after load (e.g. tab navigation)
+  useEffect(() => {
+    const handleHashchange = () => {
+      // visible check prevents triggering scroll when waypoint updates hash itself
+      if (window.location.hash === `#waypoint${i}` && !visible) {
+        scrollTo()
+      }
+    }
+    window.addEventListener('hashchange', handleHashchange)
+    return () => window.removeEventListener('hashchange', handleHashchange)
+  }, [visible, i, scrollTo])
   useFrame(() => {
     const segments = waypoints.length - 1
     setVisible(scroll.visible((i - before)  / segments, (before + after) / segments))
   })
+  const headerId = `waypoint${i}-header`
   return (
     <group ref={ref} visible={visible} {...props}>
       <Html portal={scrollContainer} center className={c("html3d", { visible })}>
-        {children}
+        <section onFocus={handleFocus} onClick={evt => evt.stopPropagation()} aria-labelledby={headerId}>
+          <h2 id={headerId}><a href={`#waypoint${i}`}>{heading}</a></h2>
+          {children}
+        </section>
       </Html>
     </group>
   )
