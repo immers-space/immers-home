@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/immers-home/static/css/main.de5f20fd.css",
-    "main.js": "/immers-home/static/js/main.69e61084.js",
+    "main.css": "/immers-home/static/css/main.fcc9dbbd.css",
+    "main.js": "/immers-home/static/js/main.a299e786.js",
     "static/js/787.92592df9.chunk.js": "/immers-home/static/js/787.92592df9.chunk.js",
     "static/media/Immers Home.glb": "/immers-home/static/media/Immers Home.9f6645ca85b36e80099d.glb",
     "static/media/AlegreyaSansSC-Regular.ttf": "/immers-home/static/media/AlegreyaSansSC-Regular.c8788d6ebd9902cb99b8.ttf",
     "static/media/immers logo dark.png": "/immers-home/static/media/immers logo dark.72c6af4238c0cd56ea53.png",
     "index.html": "/immers-home/index.html",
-    "main.de5f20fd.css.map": "/immers-home/static/css/main.de5f20fd.css.map",
-    "main.69e61084.js.map": "/immers-home/static/js/main.69e61084.js.map",
+    "main.fcc9dbbd.css.map": "/immers-home/static/css/main.fcc9dbbd.css.map",
+    "main.a299e786.js.map": "/immers-home/static/js/main.a299e786.js.map",
     "787.92592df9.chunk.js.map": "/immers-home/static/js/787.92592df9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.de5f20fd.css",
-    "static/js/main.69e61084.js"
+    "static/css/main.fcc9dbbd.css",
+    "static/js/main.a299e786.js"
   ]
 }
