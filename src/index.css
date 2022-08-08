@@ -59,9 +59,17 @@ p {
   background-color: rgba(255, 255, 255, 0.95);
   border: 2px solid #052464;
   border-radius: 5px;
-  padding: 5px;
-  max-width: min(700px, 95vw);
-  font-size: 20px;
+  padding: 15px;
+  width: 700px;
+  max-width: 95vw;
+  font-size: 16px;
+  /* hide until visible */
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.html3d.visible {
+  opacity: 1;
 }
 
 .html3d h4, .html3d h3, .html3d h2 {

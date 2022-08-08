@@ -1,8 +1,8 @@
 import { Suspense, useEffect, useRef, useState } from 'react'
+import c from "classnames"
 import { CatmullRomCurve3 } from 'three'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { ScrollControls, Sky, useScroll, Scroll, Html } from '@react-three/drei'
-import { useSpring, animated } from '@react-spring/three'
 
 import Apartment from './Apartment'
 
@@ -43,7 +43,7 @@ export default function App() {
               {waypoints.length && (
                 <>
                   <WaypointPath waypoints={waypoints} height={1.2} debug={debug} />
-                  <AtWaypoint waypoints={waypoints} i={1} height={1.2} offset={2} before={0.63} after={0.2}>
+                  <AtWaypoint waypoints={waypoints} i={1} height={1.2} offset={2} before={0.11} after={0.35}>
                     <h3>Boutique 3D Web development with a purpose</h3>
                     <p>
                       We dream of a democratized new era of the Web where creators own their content,
@@ -152,7 +152,6 @@ function AtWaypoint({waypoints, i, height, offset, before, after, children, ...p
   const ref = useRef()
   const scroll = useScroll()
   const [visible, setVisible] = useState(false)
-  const { scale } = useSpring({ scale: visible ? 1 : 0 })
   const scrollContainer = useRef(scroll.fixed)
   useEffect(() => {
     const group = ref.current
@@ -183,10 +182,10 @@ function AtWaypoint({waypoints, i, height, offset, before, after, children, ...p
     setVisible(scroll.visible((i - before)  / segments, (before + after) / segments))
   })
   return (
-    <animated.group ref={ref} visible={visible} scale={scale} {...props}>
-      <Html portal={scrollContainer} scale={0.125} transform className="html3d">
+    <group ref={ref} visible={visible} {...props}>
+      <Html portal={scrollContainer} center className={c("html3d", { visible })}>
         {children}
       </Html>
-    </animated.group>
+    </group>
   )
 }
