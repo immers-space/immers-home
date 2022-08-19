@@ -32,6 +32,9 @@ export default function Ocean({ position, sunPosition }) {
       ref.current.material.transparent = true
     }
   }, [ref])
-  useFrame((state, delta) => (ref.current.material.uniforms.time.value += delta / 7.5))
+  useFrame((state, delta) => {
+    ref.current.material.uniforms.time.value += delta / 7.5
+    ref.current.position.y = position[1] + Math.sin(state.clock.elapsedTime) / 20
+  })
   return <water ref={ref} args={[geom, config]} position={position} rotation-x={-Math.PI / 2} />
 }
