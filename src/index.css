@@ -61,7 +61,7 @@ p {
   border-radius: 5px;
   padding: 15px;
   width: 700px;
-  max-width: 95vw;
+  max-width: calc(85vw - 30px);
   font-size: 16px;
   /* hide until visible */
   opacity: 0;
