@@ -5,12 +5,13 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { ScrollControls, Sky, useScroll, Scroll, Html } from '@react-three/drei'
 
 import Apartment from './Apartment'
+import Ocean from './Ocean'
 
 import logoDark from './assets/immers logo dark.png'
 
 const waveObjName = "Assembly-2001_5";
 const debug = false;
-
+const sunPosition = [-1, 0.1, -1]
 
 
 export default function App() {
@@ -32,7 +33,7 @@ export default function App() {
       <Canvas dpr={[1, 2]} shadows camera={{ position: [10, 10, -10], near: 0.1, far: 1000 }}>
         <ambientLight intensity={0.5} />
         <spotLight angle={0.14} color="#ffffff" penumbra={1} position={[25, 50, 20]} shadow-mapSize={[2048, 2048]} shadow-bias={-0.0001} castShadow />
-        <Sky scale={1000} sunPosition={[-1, 0.1, -1]} />
+        <Sky scale={1000} sunPosition={sunPosition} />
         <Suspense fallback={null}>
           <ScrollControls pages={waypoints.length}>
             <group>
@@ -40,6 +41,7 @@ export default function App() {
                 handleWaveClick={handleWaveClick}
                 setWaypoints={setWaypoints} scale={1} position={[0, 0, 0]}
               />
+              <Ocean position={[0, -0.75, 0]} sunPosition={sunPosition} />
               {waypoints.length && (
                 <>
                   <WaypointPath waypoints={waypoints} height={1.2} debug={debug} />
