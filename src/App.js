@@ -8,6 +8,8 @@ import Apartment from './Apartment'
 import Ocean from './Ocean'
 
 import logoDark from './assets/immers logo dark.png'
+import VirtualReign from './VirtualReign'
+import NiceFreeTreasures from './NiceFreeTreasures'
 
 const waveObjName = "Assembly-2001_5";
 const debug = false;
@@ -41,6 +43,8 @@ export default function App() {
                 handleWaveClick={handleWaveClick}
                 setWaypoints={setWaypoints} scale={1} position={[0, 0, 0]}
               />
+              <VirtualReign position={[-3, 0, 7.5]} scale={0.8} />
+              <NiceFreeTreasures position={[2, 0, 7.5]} scale={0.015} />
               <Ocean position={[0, -0.75, 0]} sunPosition={sunPosition} />
               {waypoints.length && (
                 <>

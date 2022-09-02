@@ -8,7 +8,7 @@ import { useSpring, animated, config } from '@react-spring/three'
 import { Vector3 } from "three";
 
 import apartment from './assets/Immers Home.glb'
-const cursorPointer = 'cursor-pointer'
+import { cursorPointer } from "./util/consts";
 
 export default function Apartment({ setWaypoints, hideRoof, handleWaveClick,  ...props }) {
   const group = useRef();

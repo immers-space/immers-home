@@ -65,11 +65,13 @@ p {
   font-size: 16px;
   /* hide until visible */
   opacity: 0;
+  pointer-events: none;
   transition: opacity 0.5s ease-in-out;
 }
 
 .html3d.visible {
   opacity: 1;
+  pointer-events: all;
 }
 
 .html3d h4, .html3d h3, .html3d h2 {
