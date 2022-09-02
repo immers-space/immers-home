@@ -1,19 +1,21 @@
 {
   "files": {
-    "main.css": "/immers-home/static/css/main.13f172a2.css",
-    "main.js": "/immers-home/static/js/main.58fb1d7e.js",
+    "main.css": "/immers-home/static/css/main.ec9162c9.css",
+    "main.js": "/immers-home/static/js/main.664d162f.js",
     "static/js/787.92592df9.chunk.js": "/immers-home/static/js/787.92592df9.chunk.js",
     "static/media/Immers Home.glb": "/immers-home/static/media/Immers Home.9f6645ca85b36e80099d.glb",
+    "static/media/chest.glb": "/immers-home/static/media/chest.0da0f1190a64423c72bd.glb",
+    "static/media/black_queen.glb": "/immers-home/static/media/black_queen.1265dcfc7f323ba10a0a.glb",
     "static/media/AlegreyaSansSC-Regular.ttf": "/immers-home/static/media/AlegreyaSansSC-Regular.c8788d6ebd9902cb99b8.ttf",
     "static/media/waternormals.jpeg": "/immers-home/static/media/waternormals.537ec85b965d414829ab.jpeg",
     "static/media/immers logo dark.png": "/immers-home/static/media/immers logo dark.72c6af4238c0cd56ea53.png",
     "index.html": "/immers-home/index.html",
-    "main.13f172a2.css.map": "/immers-home/static/css/main.13f172a2.css.map",
-    "main.58fb1d7e.js.map": "/immers-home/static/js/main.58fb1d7e.js.map",
+    "main.ec9162c9.css.map": "/immers-home/static/css/main.ec9162c9.css.map",
+    "main.664d162f.js.map": "/immers-home/static/js/main.664d162f.js.map",
     "787.92592df9.chunk.js.map": "/immers-home/static/js/787.92592df9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.13f172a2.css",
-    "static/js/main.58fb1d7e.js"
+    "static/css/main.ec9162c9.css",
+    "static/js/main.664d162f.js"
   ]
 }
