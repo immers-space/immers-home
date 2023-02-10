@@ -1,21 +1,26 @@
 {
   "files": {
-    "main.css": "/immers-home/static/css/main.ec9162c9.css",
-    "main.js": "/immers-home/static/js/main.664d162f.js",
+    "main.css": "/immers-home/static/css/main.f1af70b1.css",
+    "main.js": "/immers-home/static/js/main.3b00bec0.js",
     "static/js/787.92592df9.chunk.js": "/immers-home/static/js/787.92592df9.chunk.js",
     "static/media/Immers Home.glb": "/immers-home/static/media/Immers Home.9f6645ca85b36e80099d.glb",
+    "static/media/Immers Home new apt.glb": "/immers-home/static/media/Immers Home new apt.70376dcbae955f76312a.glb",
+    "static/media/1.glb": "/immers-home/static/media/1.cedae4f55df993bbdb98.glb",
+    "static/media/3.glb": "/immers-home/static/media/3.d0901b84a17bbab3624e.glb",
+    "static/media/2.glb": "/immers-home/static/media/2.e6cc596f571a00644b51.glb",
+    "static/media/4.glb": "/immers-home/static/media/4.af0817f6396b830dcfb2.glb",
     "static/media/chest.glb": "/immers-home/static/media/chest.0da0f1190a64423c72bd.glb",
     "static/media/black_queen.glb": "/immers-home/static/media/black_queen.1265dcfc7f323ba10a0a.glb",
     "static/media/AlegreyaSansSC-Regular.ttf": "/immers-home/static/media/AlegreyaSansSC-Regular.c8788d6ebd9902cb99b8.ttf",
     "static/media/waternormals.jpeg": "/immers-home/static/media/waternormals.537ec85b965d414829ab.jpeg",
     "static/media/immers logo dark.png": "/immers-home/static/media/immers logo dark.72c6af4238c0cd56ea53.png",
     "index.html": "/immers-home/index.html",
-    "main.ec9162c9.css.map": "/immers-home/static/css/main.ec9162c9.css.map",
-    "main.664d162f.js.map": "/immers-home/static/js/main.664d162f.js.map",
+    "main.f1af70b1.css.map": "/immers-home/static/css/main.f1af70b1.css.map",
+    "main.3b00bec0.js.map": "/immers-home/static/js/main.3b00bec0.js.map",
     "787.92592df9.chunk.js.map": "/immers-home/static/js/787.92592df9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ec9162c9.css",
-    "static/js/main.664d162f.js"
+    "static/css/main.f1af70b1.css",
+    "static/js/main.3b00bec0.js"
   ]
 }
