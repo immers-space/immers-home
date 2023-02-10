@@ -6,7 +6,7 @@ import { useSpring, animated, config } from '@react-spring/three'
 
 import queen from "./assets/black_queen.glb"
 
-export default function VirtualReign({ position, scale }) {
+export default function VirtualReign({ position, scale, setIsActive }) {
   const gltf = useGLTF(queen)
   const [hovered, setHovered] = useState(false)
   const { finalScale } = useSpring({
@@ -16,11 +16,13 @@ export default function VirtualReign({ position, scale }) {
   const handleOver = useCallback(() => {
     document.body.classList.add(cursorPointer)
     setHovered(true)
-  }, [])
+    setIsActive(true)
+  }, [setIsActive])
   const handleOut = useCallback(() => {
     document.body.classList.remove(cursorPointer)
     setHovered(false)
-  }, [])
+    setIsActive(false)
+  }, [setIsActive])
   const handleClick = useCallback(() => {
     window.location = 'https://hub.vreign.space'
   }, [])

@@ -6,7 +6,7 @@ import { useSpring, animated, config } from '@react-spring/three'
 
 import chest from "./assets/chest.glb"
 
-export default function NiceFreeTreasures({ position, scale }) {
+export default function NiceFreeTreasures({ position, scale, setIsActive }) {
   const gltf = useGLTF(chest)
   const [hovered, setHovered] = useState(false)
   const { finalScale } = useSpring({
@@ -16,11 +16,13 @@ export default function NiceFreeTreasures({ position, scale }) {
   const handleOver = useCallback(() => {
     document.body.classList.add(cursorPointer)
     setHovered(true)
-  }, [])
+    setIsActive(true)
+  }, [setIsActive])
   const handleOut = useCallback(() => {
     document.body.classList.remove(cursorPointer)
     setHovered(false)
-  }, [])
+    setIsActive(false)
+  }, [setIsActive])
   const handleClick = useCallback(() => {
     window.location = 'https://nice.freetreasures.shop'
   }, [])

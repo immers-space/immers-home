@@ -2,7 +2,7 @@ import { Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import c from "classnames"
 import { CatmullRomCurve3 } from 'three'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { ScrollControls, Sky, useScroll, Scroll, Html } from '@react-three/drei'
+import { ScrollControls, Sky, useScroll, Scroll, Html, Text } from '@react-three/drei'
 
 import Apartment from './Apartment'
 import Ocean from './Ocean'
@@ -10,6 +10,8 @@ import Ocean from './Ocean'
 import logoDark from './assets/immers logo dark.png'
 import VirtualReign from './VirtualReign'
 import NiceFreeTreasures from './NiceFreeTreasures'
+import House from './House'
+import { font } from './util/consts'
 
 const waveObjName = "Assembly-2001_5";
 const debug = false;
@@ -17,7 +19,8 @@ const sunPosition = [-1, 0.1, -1]
 
 
 export default function App() {
-  const [waypoints, setWaypoints] = useState([]);
+  const [waypoints, setWaypoints] = useState([])
+  const [projectHoverActive, setProjectHoverActive] = useState(false)
   const [showUnseenVideo, setShowUnseenVideo] = useState(false)
   const handleWaveClick = (event) => {
     if (event.object.name === waveObjName) {
@@ -39,16 +42,30 @@ export default function App() {
         <Suspense fallback={null}>
           <ScrollControls pages={waypoints.length}>
             <group>
+              <House scale={1} position={[0, 0, 0]} />
               <Apartment
                 handleWaveClick={handleWaveClick}
                 setWaypoints={setWaypoints} scale={1} position={[0, 0, 0]}
               />
-              <VirtualReign position={[-3, 0, 7.5]} scale={0.8} />
-              <NiceFreeTreasures position={[2, 0, 7.5]} scale={0.015} />
+              <Text
+                position={[-0.5, 0.1, 8.5]}
+                fontSize={0.75}
+                color="#052464"
+                anchorX="center"
+                anchorY="middle"
+                rotation-x={-Math.PI / 2}
+                font={font}
+                visible={!projectHoverActive}
+              >
+                Explore Our Projects
+              </Text>
+              <VirtualReign position={[-3, 0, 7.5]} scale={0.8} setIsActive={setProjectHoverActive} />
+              <NiceFreeTreasures position={[2, 0, 7.5]} scale={0.015} setIsActive={setProjectHoverActive} />
               <Ocean position={[0, -0.75, 0]} sunPosition={sunPosition} />
               {waypoints.length && (
                 <>
                   <WaypointPath waypoints={waypoints} height={1.2} debug={debug} />
+                  <AtWaypoint waypoints={waypoints} i={0} height={1.2} offset={-5} before={0} after={0.79} />
                   <AtWaypoint waypoints={waypoints} i={1} height={1.2} offset={2} before={0.11} after={0.35}
                               heading='Boutique 3D Web development with a purpose'>
                     <p>
@@ -74,13 +91,13 @@ export default function App() {
                     <p>
                       Click the Great (Vapor)Wave art on the wall above to watch video about how we helped
                       performance artist Tiffany Trenda bring her Un/Seen performance to a virtual audience or{" "}
-                      <a href="https://web.immers.space/consulting">get started with Immers Space consulting</a>.
+                      <a href="https://web.immers.space/metaverse-design-service">get started with Immers Space consulting</a>.
                     </p>
                   </AtWaypoint>
                   <AtWaypoint waypoints={waypoints} i={3} offset={2} height={1.2} before={0.2} after={0.1}
                               heading='Free Software for a Free Metaverse'>
                     <p>
-                      We're dissapointed in the state of the Social Web.
+                      We're disappointed in the state of the Social Web.
                       We believe that closed platforms designed to manipulate and sell our attention
                       bring out the very worst in us, and that the rigid demands of centralized algorithms
                       and app store reviews stifle creativity and freedom.
@@ -92,6 +109,41 @@ export default function App() {
                       human interaction when immersers discover your site and share it with their friends.
                     </p>
                     <p><a href="https://github.com/immers-space">Learn how to connect your project to the metaverse.</a></p>
+                  </AtWaypoint>
+                  <AtWaypoint waypoints={waypoints} i={4} offset={2} height={1.2} before={0.2} after={0.1}
+                              heading='Use Cases'>
+                    <p className='center'>
+                      Let's explore some use cases for immersive 3D Web content.
+                    </p>
+                  </AtWaypoint>
+                  <AtWaypoint waypoints={waypoints} i={5} offset={2} height={1.2} before={0.2} after={0.33}
+                              heading='Remote Collaboration'>
+                    <p>
+                      While remote work grows in popularity, physical distance needn't be a barrier to
+                      effective collaboration thanks to virtual spaces. We can help build your perfect
+                      environment using leading real-time virtual collaboration platforms including{" "}
+                      <a href="https://learn.framevr.io" target="_blank" rel="noopener">Frame</a> and{" "}
+                      <a href="https://hubs.mozilla.com/cloud" target="_blank" rel="noopener">Mozilla Hubs</a>.
+                    </p>
+                  </AtWaypoint>
+                  <AtWaypoint waypoints={waypoints} i={6} offset={2} height={1} before={0.2} after={0.33}
+                              heading='Social Immersive Retail'>
+                    <p>
+                      While online shopping provides convenience and, in pandemic times, safety,
+                      today’s e-commerce solutions lack the social and personal aspects of in-store shopping
+                      which have been shown to increase sales.
+                    </p>
+                  </AtWaypoint>
+                  <AtWaypoint waypoints={waypoints} i={7} offset={2} height={0.3} before={0.6} after={0.1}
+                              heading='Social Immersive Retail'>
+                    <p>
+                      What if friends could meet up virtually to shop a digital twin of your store together?
+                      What if a live sales representative could join them when needed to answer questions and close the sale?
+                      We can help you transform your e-commerce for the metaverse age.
+                    </p>
+                    <p>
+                      <a href="https://web.immers.space/metaverse-design-service/">Contact us for a free consultation</a>.
+                    </p>
                   </AtWaypoint>
                 </>
               )}
@@ -134,7 +186,7 @@ function WaypointPath({waypoints, height, debug, ...props}) {
     state.camera.position.y += height
     const segments = waypoints.length - 1;
     const pickLast = Math.floor(t * segments);
-    const pickNext = pickLast + 1;
+    const pickNext = Math.min(pickLast + 1, waypoints.length);
     state.camera.quaternion.slerpQuaternions(
       waypoints[pickLast].quaternion,
       waypoints[pickNext].quaternion,

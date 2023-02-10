@@ -39,16 +39,12 @@ export default function Apartment({ setWaypoints, hideRoof, handleWaveClick,  ..
   }
   return (
     <group ref={group} {...props} dispose={null}>
-      <group name="Floor_Plan" position={[0, 0.01, 0]}>
+      {/* <group name="Floor_Plan" position={[0, 0.01, 0]}>
         <mesh name="navMesh" castShadow receiveShadow geometry={nodes.navMesh.geometry} material={nodes.navMesh.material} />
-      </group>
-      <group name="Cilindro" position={[-3.25, 0.91, 4.22]} scale={0.14}>
-        <mesh name="Cilindro001_0" castShadow receiveShadow geometry={nodes.Cilindro001_0.geometry} material={materials['mesa.001']} />
-        <mesh name="Cilindro001_2" castShadow receiveShadow geometry={nodes.Cilindro001_2.geometry} material={materials['Material.022']} />
-        <mesh name="Cilindro001_3" castShadow receiveShadow geometry={nodes.Cilindro001_3.geometry} material={materials['Material.023']} />
-      </group>
+      </group> */}
+
       <group name="Assembly-7" scale={0.01}>
-        <group name="3DGeom~6" rotation={[Math.PI / 2, 0, 0]}>
+        {/* <group name="3DGeom~6" rotation={[Math.PI / 2, 0, 0]}>
           <mesh name="Assembly-4001_0" castShadow receiveShadow geometry={nodes['Assembly-4001_0'].geometry} material={materials['texture.001']} />
           <mesh name="Assembly-4001_1" castShadow receiveShadow geometry={nodes['Assembly-4001_1'].geometry} material={materials['Material.029']} />
           <mesh name="Assembly-4001_2" castShadow receiveShadow geometry={nodes['Assembly-4001_2'].geometry} material={materials['Material.030']} />
@@ -61,13 +57,13 @@ export default function Apartment({ setWaypoints, hideRoof, handleWaveClick,  ..
         <group name="3DGeom~7" rotation={[Math.PI / 2, 0, 0]}>
           <mesh name="Assembly-6001_0" castShadow receiveShadow geometry={nodes['Assembly-6001_0'].geometry} material={materials['woood.001']} />
           <mesh name="Assembly-6001_1" castShadow receiveShadow geometry={nodes['Assembly-6001_1'].geometry} material={materials['Material.038']} />
-        </group>
+        </group> */}
         <group name="Gray1" rotation={[Math.PI / 2, 0, 0]}>
-          <mesh name="Assembly-2001_0" castShadow receiveShadow geometry={nodes['Assembly-2001_0'].geometry} material={materials['color.001']} />
+          {/* <mesh name="Assembly-2001_0" castShadow receiveShadow geometry={nodes['Assembly-2001_0'].geometry} material={materials['color.001']} />
           <mesh name="Assembly-2001_1" castShadow receiveShadow geometry={nodes['Assembly-2001_1'].geometry} material={materials['Material.039']} />
           <mesh name="Assembly-2001_2" castShadow receiveShadow geometry={nodes['Assembly-2001_2'].geometry} material={materials['Material.040']} />
           <mesh name="Assembly-2001_3" castShadow receiveShadow geometry={nodes['Assembly-2001_3'].geometry} material={materials['Material.041']} />
-          <mesh name="Assembly-2001_4" castShadow receiveShadow geometry={nodes['Assembly-2001_4'].geometry} material={materials['Material.042']} />
+          <mesh name="Assembly-2001_4" castShadow receiveShadow geometry={nodes['Assembly-2001_4'].geometry} material={materials['Material.042']} /> */}
           {/* great (vapor)wave */}
           <animated.mesh
             name="Assembly-2001_5"
@@ -78,7 +74,7 @@ export default function Apartment({ setWaypoints, hideRoof, handleWaveClick,  ..
             castShadow receiveShadow
             geometry={nodes['Assembly-2001_5'].geometry} material={materials['Material.043']}
           />
-          <mesh name="Assembly-2001_6" castShadow receiveShadow geometry={nodes['Assembly-2001_6'].geometry} material={materials['Material.045']} />
+          {/* <mesh name="Assembly-2001_6" castShadow receiveShadow geometry={nodes['Assembly-2001_6'].geometry} material={materials['Material.045']} /> */}
         </group>
       </group>
       <group name="sandglb" position={[-1.5, -12, 31]} scale={0.5}>
@@ -90,7 +86,7 @@ export default function Apartment({ setWaypoints, hideRoof, handleWaveClick,  ..
       <group name="st-monetization-visible_st-monetization-networked_buddahglb" position={[5, 0, 1.5]} rotation={[0, Math.PI / 2, 0]} scale={20}>
         <mesh name="Buddha1" castShadow receiveShadow geometry={nodes.Buddha1.geometry} material={materials['Special Antique Bronze Matte']} rotation={[-Math.PI / 2, 0, 0]} scale={0.001} />
       </group>
-      <group name="roof" visible={!hideRoof} position={[3.72, -0.89, 5.06]} rotation={[0, Math.PI / 2, 0]} scale={[1.2, 1.2, 0.83]}>
+      {/* <group name="roof" visible={!hideRoof} position={[3.72, -0.89, 5.06]} rotation={[0, Math.PI / 2, 0]} scale={[1.2, 1.2, 0.83]}>
         <mesh name="Roof-Cedar_Shingle" geometry={nodes['Roof-Cedar_Shingle'].geometry} material={materials['Roof-Cedar Shingle']} scale={0.01} />
         <mesh name="Brick-Red" geometry={nodes['Brick-Red'].geometry} material={materials['Brick-Red']} scale={0.01} />
         <mesh name="Floor-Deck_Pine" geometry={nodes['Floor-Deck_Pine'].geometry} material={materials['Floor-Deck Pine']} scale={0.01} />
@@ -98,8 +94,15 @@ export default function Apartment({ setWaypoints, hideRoof, handleWaveClick,  ..
         <mesh name="Wd-Pine_Horizontal" geometry={nodes['Wd-Pine_Horizontal'].geometry} material={materials['Wd-Pine Horizontal']} scale={0.01} />
         <mesh name="Paint-01" geometry={nodes['Paint-01'].geometry} material={materials['Paint-01']} scale={0.01} />
         <mesh name="Paint-02" geometry={nodes['Paint-02'].geometry} material={materials['Paint-02']} scale={0.01} />
+      </group> */}
+      {/* office */}
+      <group name="Cilindro" position={[-3.25, 0.91, 4.22]} scale={0.14}>
+        <mesh name="Cilindro001_0" castShadow receiveShadow geometry={nodes.Cilindro001_0.geometry} material={materials['mesa.001']} />
+        <mesh name="Cilindro001_2" castShadow receiveShadow geometry={nodes.Cilindro001_2.geometry} material={materials['Material.022']} />
+        <mesh name="Cilindro001_3" castShadow receiveShadow geometry={nodes.Cilindro001_3.geometry} material={materials['Material.023']} />
       </group>
       <mesh name="CombinedMesh" castShadow receiveShadow geometry={nodes.CombinedMesh.geometry} material={materials['base mesa.001']} />
+      {/* external decorations */}
       <mesh name="CombinedMesh_1" castShadow receiveShadow geometry={nodes.CombinedMesh_1.geometry} material={materials.PaintSatin} />
       <mesh name="CombinedMesh_2" castShadow receiveShadow geometry={nodes.CombinedMesh_2.geometry} material={materials['Material.002']} />
       <mesh name="CombinedMesh_3" castShadow receiveShadow geometry={nodes.CombinedMesh_3.geometry} material={materials['Material.011']} />
