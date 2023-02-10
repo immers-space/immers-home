@@ -12,14 +12,17 @@ import VirtualReign from './VirtualReign'
 import NiceFreeTreasures from './NiceFreeTreasures'
 import House from './House'
 import { font } from './util/consts'
+import { WorkerBot1, WorkerBot2, WorkerBot3, WorkerBot4 } from './WorkerBot'
 
 const waveObjName = "Assembly-2001_5";
-const debug = false;
+const debug = true;
 const sunPosition = [-1, 0.1, -1]
+const qPI = Math.PI / 4
 
 
 export default function App() {
   const [waypoints, setWaypoints] = useState([])
+  const [currentWaypoint, setCurrentWaypoint] = useState(0)
   const [projectHoverActive, setProjectHoverActive] = useState(false)
   const [showUnseenVideo, setShowUnseenVideo] = useState(false)
   const handleWaveClick = (event) => {
@@ -64,7 +67,7 @@ export default function App() {
               <Ocean position={[0, -0.75, 0]} sunPosition={sunPosition} />
               {waypoints.length && (
                 <>
-                  <WaypointPath waypoints={waypoints} height={1.2} debug={debug} />
+                  <WaypointPath waypoints={waypoints} height={1.2} debug={debug} setCurrentWaypoint={setCurrentWaypoint} />
                   <AtWaypoint waypoints={waypoints} i={0} height={1.2} offset={-5} before={0} after={0.79} />
                   <AtWaypoint waypoints={waypoints} i={1} height={1.2} offset={2} before={0.11} after={0.35}
                               heading='Boutique 3D Web development with a purpose'>
@@ -113,7 +116,7 @@ export default function App() {
                   <AtWaypoint waypoints={waypoints} i={4} offset={2} height={1.2} before={0.2} after={0.1}
                               heading='Use Cases'>
                     <p className='center'>
-                      Let's explore some use cases for immersive 3D Web content.
+                      Let's explore some use cases for immersive 3D Websites.
                     </p>
                   </AtWaypoint>
                   <AtWaypoint waypoints={waypoints} i={5} offset={2} height={1.2} before={0.2} after={0.33}
@@ -126,6 +129,14 @@ export default function App() {
                       <a href="https://hubs.mozilla.com/cloud" target="_blank" rel="noopener">Mozilla Hubs</a>.
                     </p>
                   </AtWaypoint>
+                  {currentWaypoint > 1 && (
+                    <group position={[-3.25, 0.75, 4.25]}>
+                      <WorkerBot1 position={[-0.75, 0, -0.75]} rotation={[0, qPI, 0]} show={currentWaypoint === 5} />
+                      <WorkerBot2 position={[0.75, 0, 0.75]} rotation={[0,  5 * qPI, 0]} show={currentWaypoint === 5} />
+                      <WorkerBot3 position={[-0.75, 0, 0.75]} rotation={[0, 3 * qPI, 0]} show={currentWaypoint === 5} />
+                      <WorkerBot4 position={[0.75, 0, -0.75]} rotation={[0,  -1 * qPI, 0]} show={currentWaypoint === 5} />
+                    </group>
+                  )}
                   <AtWaypoint waypoints={waypoints} i={6} offset={2} height={1} before={0.2} after={0.33}
                               heading='Social Immersive Retail'>
                     <p>
@@ -167,7 +178,7 @@ export default function App() {
   )
 }
 
-function WaypointPath({waypoints, height, debug, ...props}) {
+function WaypointPath({waypoints, height, debug, setCurrentWaypoint, ...props}) {
   const geo = useRef()
   const curve = useRef()
   const scroll = useScroll()
@@ -192,9 +203,10 @@ function WaypointPath({waypoints, height, debug, ...props}) {
       waypoints[pickNext].quaternion,
       scroll.range(pickLast / segments, 1 / segments)
     );
+    setCurrentWaypoint(Math.round(t * segments))
     if (debug) {
-      console.log(`Current segment: ${pickLast}. Before: ${1 - (t * segments - pickLast)}. After: ${t * segments - pickLast}`)
-      console.log(`Camera: `, state.camera.position)
+      console.debug(`Current segment: ${pickLast}. Before: ${1 - (t * segments - pickLast)}. After: ${t * segments - pickLast}`)
+      console.debug(`Camera: `, state.camera.position)
     }
   })
   return (
@@ -239,7 +251,7 @@ function AtWaypoint({waypoints, i, height, offset, before, after, heading, child
       return () => window.clearTimeout(timer)
     }
   }, [i, scrollTo])
-  // scroll to this paypoint based on hashchange after load (e.g. tab navigation)
+  // scroll to this waypoint based on hashchange after load (e.g. tab navigation)
   useEffect(() => {
     const handleHashchange = () => {
       // visible check prevents triggering scroll when waypoint updates hash itself
