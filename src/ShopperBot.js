@@ -31,9 +31,9 @@ export function ShopperSpinner(props) {
   return (
     <group {...props}>
       <animated.group rotation={rotation}>
-        <primitive object={shopper1.scene} {...onCircle(size, 0)} />
-        <primitive object={shopper2.scene} {...onCircle(size, gap)} />
-        <primitive object={shopper3.scene} {...onCircle(size, 2 * gap)} />
+        <primitive object={shopper1.scene} {...onCircle(size, 0)} visible={(currentShopper % 3) !== 2} />
+        <primitive object={shopper2.scene} {...onCircle(size, gap)} visible={(currentShopper % 3) !== 0} />
+        <primitive object={shopper3.scene} {...onCircle(size, 2 * gap)} visible={(currentShopper % 3) !== 1} />
       </animated.group>
     </group>
   )

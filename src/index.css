@@ -3,18 +3,22 @@
   src: url(./assets/AlegreyaSansSC-Regular.ttf) format('truetype');
 }
 
-html, body, #root {
+html, body, #page-container, #et-main-area, #root {
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
+#main-footer {
+  display: none;
+}
+
 .cursor-pointer #root {
   cursor: pointer;
 }
 
-body {
+/* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -26,9 +30,9 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
+} */
 
-h1 {
+#root h1 {
   font-family: 'AlegreyaSansSC', sans-serif;
   text-align: center;
   margin-top: 200px;
@@ -37,17 +41,17 @@ h1 {
   margin-bottom: 0px;
 }
 
-h1 img {
+#root h1 img {
   height: 96px;
   vertical-align: text-bottom;
 }
 
-p {
+#root p {
   text-align: center;
   margin-top: 0;
 }
 
-.pointer {
+#root .pointer {
   display: inline-block;
   animation-name: floating;
   animation-duration: 3s;
@@ -91,7 +95,7 @@ p {
   color: initial;
 }
 
-.overlay {
+#root .overlay {
   position: fixed;
   display: flex;
   align-items: center;
@@ -100,7 +104,7 @@ p {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.overlay iframe {
+#root .overlay iframe {
   max-width: 90%;
   max-height: 90%;
 }

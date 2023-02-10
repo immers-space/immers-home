@@ -158,7 +158,7 @@ export default function App() {
                       <a href="https://web.immers.space/metaverse-design-service/">Contact us for a free consultation</a>.
                     </p>
                   </AtWaypoint>
-                  {currentWaypoint > 5.5 && (
+                  {currentWaypoint > 6 && (
                     <ShopperSpinner position={[-5.25, 0.75, 0.6]} rotation={[0, 1.2, 0]} />
                   )}
                 </>
@@ -195,7 +195,7 @@ function WaypointPath({waypoints, height, debug, setCurrentWaypoint, ...props}) 
     geo.current.setFromPoints(curve.current.getPoints(50))
   }, [waypoints])
   useFrame((state, delta) => {
-    if (!curve.current) {
+    if (!curve.current || !state.camera) {
       return
     }
     const t = scroll.offset
@@ -203,7 +203,7 @@ function WaypointPath({waypoints, height, debug, setCurrentWaypoint, ...props}) 
     state.camera.position.y += height
     const segments = waypoints.length - 1;
     const pickLast = Math.floor(t * segments);
-    const pickNext = Math.min(pickLast + 1, waypoints.length);
+    const pickNext = Math.min(pickLast + 1, waypoints.length - 1);
     state.camera.quaternion.slerpQuaternions(
       waypoints[pickLast].quaternion,
       waypoints[pickNext].quaternion,
