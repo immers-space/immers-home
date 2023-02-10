@@ -14,6 +14,7 @@ import House from './House'
 import { font } from './util/consts'
 import { WorkerBot1, WorkerBot2, WorkerBot3, WorkerBot4 } from './WorkerBot'
 import { ShopperSpinner } from './ShopperBot'
+import { Loader } from './Loader'
 
 const waveObjName = "Assembly-2001_5";
 const debug = new URLSearchParams(window.location.search).has('debug');
@@ -173,6 +174,7 @@ export default function App() {
           </ScrollControls>
         </Suspense>
       </Canvas>
+      <Loader />
       {showUnseenVideo && (
         <div className='overlay' onClick={handleCloseVideo}>
           <iframe width="560" height="315" src="https://www.youtube.com/embed/HeqxVUm5PEA" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
