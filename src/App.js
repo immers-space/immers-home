@@ -13,6 +13,7 @@ import NiceFreeTreasures from './NiceFreeTreasures'
 import House from './House'
 import { font } from './util/consts'
 import { WorkerBot1, WorkerBot2, WorkerBot3, WorkerBot4 } from './WorkerBot'
+import { ShopperSpinner } from './ShopperBot'
 
 const waveObjName = "Assembly-2001_5";
 const debug = new URLSearchParams(window.location.search).has('debug');
@@ -129,12 +130,12 @@ export default function App() {
                       <a href="https://hubs.mozilla.com/cloud" target="_blank" rel="noreferrer">Mozilla Hubs</a>.
                     </p>
                   </AtWaypoint>
-                  {currentWaypoint > 1 && (
+                  {currentWaypoint > 2 && (
                     <group position={[-3.25, 0.75, 4.25]}>
-                      <WorkerBot1 position={[-0.75, 0, -0.75]} rotation={[0, qPI, 0]} show={currentWaypoint === 5} />
-                      <WorkerBot2 position={[0.75, 0, 0.75]} rotation={[0,  5 * qPI, 0]} show={currentWaypoint === 5} />
-                      <WorkerBot3 position={[-0.75, 0, 0.75]} rotation={[0, 3 * qPI, 0]} show={currentWaypoint === 5} />
-                      <WorkerBot4 position={[0.75, 0, -0.75]} rotation={[0,  -1 * qPI, 0]} show={currentWaypoint === 5} />
+                      <WorkerBot1 position={[-0.75, 0, -0.75]} rotation={[0, qPI, 0]} show={Math.round(currentWaypoint) === 5} />
+                      <WorkerBot2 position={[0.75, 0, 0.75]} rotation={[0,  5 * qPI, 0]} show={Math.round(currentWaypoint)  === 5} />
+                      <WorkerBot3 position={[-0.75, 0, 0.75]} rotation={[0, 3 * qPI, 0]} show={Math.round(currentWaypoint)  === 5} />
+                      <WorkerBot4 position={[0.75, 0, -0.75]} rotation={[0,  -1 * qPI, 0]} show={Math.round(currentWaypoint)  === 5} />
                     </group>
                   )}
                   <AtWaypoint waypoints={waypoints} i={6} offset={2} height={1} before={0.2} after={0.33}
@@ -145,7 +146,7 @@ export default function App() {
                       which have been shown to increase sales.
                     </p>
                   </AtWaypoint>
-                  <AtWaypoint waypoints={waypoints} i={7} offset={2} height={0.3} before={0.6} after={0.1}
+                  <AtWaypoint waypoints={waypoints} i={7} offset={2} height={0.3} before={0.3} after={0.1}
                               heading='Social Immersive Retail'>
                     <p>
                       What if friends could meet up virtually to shop a digital twin of your store together?
@@ -156,6 +157,9 @@ export default function App() {
                       <a href="https://web.immers.space/metaverse-design-service/">Contact us for a free consultation</a>.
                     </p>
                   </AtWaypoint>
+                  {currentWaypoint > 5.5 && (
+                    <ShopperSpinner position={[-5.25, 0.75, 0.6]} rotation={[0, 1.2, 0]} />
+                  )}
                 </>
               )}
             </group>
@@ -203,7 +207,7 @@ function WaypointPath({waypoints, height, debug, setCurrentWaypoint, ...props}) 
       waypoints[pickNext].quaternion,
       scroll.range(pickLast / segments, 1 / segments)
     );
-    setCurrentWaypoint(Math.round(t * segments))
+    setCurrentWaypoint(Math.round(t * segments * 2) / 2)
     if (debug) {
       console.debug(`Current segment: ${pickLast}. Before: ${1 - (t * segments - pickLast)}. After: ${t * segments - pickLast}`)
       console.debug(`Camera: `, state.camera.position)
