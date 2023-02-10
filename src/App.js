@@ -125,8 +125,8 @@ export default function App() {
                       While remote work grows in popularity, physical distance needn't be a barrier to
                       effective collaboration thanks to virtual spaces. We can help build your perfect
                       environment using leading real-time virtual collaboration platforms including{" "}
-                      <a href="https://learn.framevr.io" target="_blank" rel="noopener">Frame</a> and{" "}
-                      <a href="https://hubs.mozilla.com/cloud" target="_blank" rel="noopener">Mozilla Hubs</a>.
+                      <a href="https://learn.framevr.io" target="_blank" rel="noreferrer">Frame</a> and{" "}
+                      <a href="https://hubs.mozilla.com/cloud" target="_blank" rel="noreferrer">Mozilla Hubs</a>.
                     </p>
                   </AtWaypoint>
                   {currentWaypoint > 1 && (
