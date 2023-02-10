@@ -15,7 +15,7 @@ import { font } from './util/consts'
 import { WorkerBot1, WorkerBot2, WorkerBot3, WorkerBot4 } from './WorkerBot'
 
 const waveObjName = "Assembly-2001_5";
-const debug = true;
+const debug = new URLSearchParams(window.location.search).has('debug');
 const sunPosition = [-1, 0.1, -1]
 const qPI = Math.PI / 4
 
