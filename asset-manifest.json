@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/immers-home/static/css/main.f1af70b1.css",
-    "main.js": "/immers-home/static/js/main.d8c0edda.js",
+    "main.css": "/immers-home/static/css/main.6d64b662.css",
+    "main.js": "/immers-home/static/js/main.68835db6.js",
     "static/js/787.92592df9.chunk.js": "/immers-home/static/js/787.92592df9.chunk.js",
     "static/media/Immers Home.glb": "/immers-home/static/media/Immers Home.9f6645ca85b36e80099d.glb",
     "static/media/Immers Home new apt.glb": "/immers-home/static/media/Immers Home new apt.70376dcbae955f76312a.glb",
@@ -15,12 +15,12 @@
     "static/media/waternormals.jpeg": "/immers-home/static/media/waternormals.537ec85b965d414829ab.jpeg",
     "static/media/immers logo dark.png": "/immers-home/static/media/immers logo dark.72c6af4238c0cd56ea53.png",
     "index.html": "/immers-home/index.html",
-    "main.f1af70b1.css.map": "/immers-home/static/css/main.f1af70b1.css.map",
-    "main.d8c0edda.js.map": "/immers-home/static/js/main.d8c0edda.js.map",
+    "main.6d64b662.css.map": "/immers-home/static/css/main.6d64b662.css.map",
+    "main.68835db6.js.map": "/immers-home/static/js/main.68835db6.js.map",
     "787.92592df9.chunk.js.map": "/immers-home/static/js/787.92592df9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f1af70b1.css",
-    "static/js/main.d8c0edda.js"
+    "static/css/main.6d64b662.css",
+    "static/js/main.68835db6.js"
   ]
 }
