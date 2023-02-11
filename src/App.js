@@ -131,14 +131,12 @@ export default function App() {
                       <a href="https://hubs.mozilla.com/cloud" target="_blank" rel="noreferrer">Mozilla Hubs</a>.
                     </p>
                   </AtWaypoint>
-                  {currentWaypoint > 2 && (
-                    <group position={[-3.25, 0.75, 4.25]}>
-                      <WorkerBot1 position={[-0.75, 0, -0.75]} rotation={[0, qPI, 0]} show={Math.round(currentWaypoint) === 5} />
-                      <WorkerBot2 position={[0.75, 0, 0.75]} rotation={[0,  5 * qPI, 0]} show={Math.round(currentWaypoint)  === 5} />
-                      <WorkerBot3 position={[-0.75, 0, 0.75]} rotation={[0, 3 * qPI, 0]} show={Math.round(currentWaypoint)  === 5} />
-                      <WorkerBot4 position={[0.75, 0, -0.75]} rotation={[0,  -1 * qPI, 0]} show={Math.round(currentWaypoint)  === 5} />
-                    </group>
-                  )}
+                  <group position={[-3.25, 0.75, 4.25]} visible={currentWaypoint > 3}>
+                    <WorkerBot1 position={[-0.75, 0, -0.75]} rotation={[0, qPI, 0]} show={Math.round(currentWaypoint) === 5} />
+                    <WorkerBot2 position={[0.75, 0, 0.75]} rotation={[0,  5 * qPI, 0]} show={Math.round(currentWaypoint)  === 5} />
+                    <WorkerBot3 position={[-0.75, 0, 0.75]} rotation={[0, 3 * qPI, 0]} show={Math.round(currentWaypoint)  === 5} />
+                    <WorkerBot4 position={[0.75, 0, -0.75]} rotation={[0,  -1 * qPI, 0]} show={Math.round(currentWaypoint)  === 5} />
+                  </group>
                   <AtWaypoint waypoints={waypoints} i={6} offset={2} height={1} before={0.2} after={0.33}
                               heading='Social Immersive Retail'>
                     <p>
@@ -246,7 +244,7 @@ function AtWaypoint({waypoints, i, height, offset, before, after, heading, child
   // update hash when scrolling
   useEffect(() => {
     if (visible) {
-      window.location.hash = `waypoint${i}`;
+      window.history.replaceState('', '', `#waypoint${i}`)
     }
   }, [visible, i])
   // scroll to this waypoint based on hash at pageload

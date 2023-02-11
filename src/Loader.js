@@ -60,6 +60,7 @@ const styles = {
     // justifyContent: 'center',
     transition: `opacity ${fadeTime}ms ease`,
     zIndex: 1000,
+    pointerEvents: 'none'
   },
   inner: {
     width: 100,

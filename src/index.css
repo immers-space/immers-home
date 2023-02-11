@@ -59,7 +59,7 @@ code {
   animation-timing-function: ease-in-out;
 }
 
-.html3d {
+#root .html3d {
   background-color: rgba(255, 255, 255, 0.95);
   border: 2px solid #052464;
   border-radius: 5px;
@@ -73,24 +73,34 @@ code {
   transition: opacity 0.5s ease-in-out;
 }
 
-.html3d.visible {
+#root .html3d.visible {
   opacity: 1;
   pointer-events: all;
 }
 
-.html3d h4, .html3d h3, .html3d h2 {
+#root .html3d h4, .html3d h3, .html3d h2 {
   text-align: center;
 }
 
-.html3d p {
+#root .html3d p {
   text-align: justify;
 }
 
-.html3d p.center {
+@media only screen and (max-width: 768px) {
+  #root .html3d p {
+    font-size: 12px;
+  }
+  #root h1 {
+    margin-top: 100px;
+    font-size: 72px;
+  }
+}
+
+#root .html3d p.center {
   text-align: center;
 }
 
-.html3d h2 a {
+#root .html3d h2 a {
   text-decoration: none;
   color: initial;
 }
