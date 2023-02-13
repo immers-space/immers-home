@@ -15,12 +15,12 @@ jobs:
     
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     
     - name: Install Node.js
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v3
       with:
-        node-version: 13.x
+        node-version: 16
     
     - name: Install NPM packages
       run: npm ci
@@ -50,8 +50,12 @@ jobs:
         name: production-files
         path: ./build
 
-    - name: Deploy to gh-pages
-      uses: peaceiris/actions-gh-pages@v3
+    - name: Deploy to wordpress
+      uses: SamKirkland/FTP-Deploy-Action@4.3.3
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./build
+        server: web.immers.space
+        username: immers-home-ci@web.immers.space
+        password: ${{ secrets.ftp_password }}
+        local-dir: ./build/
+        server-dir: ./build/
+        dry-run: true
