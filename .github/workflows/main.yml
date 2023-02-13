@@ -58,4 +58,3 @@ jobs:
         password: ${{ secrets.ftp_password }}
         local-dir: ./build/
         server-dir: ./build/
-        dry-run: true
