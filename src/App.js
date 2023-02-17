@@ -4,9 +4,10 @@ import { CatmullRomCurve3 } from 'three'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { ScrollControls, Sky, useScroll, Scroll, Html, Text } from '@react-three/drei'
 
+import { ImmersHUD, catchToken } from 'immers-client'
+
 import Apartment from './Apartment'
 import Ocean from './Ocean'
-
 import logoDark from './assets/immers logo dark.png'
 import VirtualReign from './VirtualReign'
 import NiceFreeTreasures from './NiceFreeTreasures'
@@ -15,18 +16,24 @@ import { font } from './util/consts'
 import { WorkerBot1, WorkerBot2, WorkerBot3, WorkerBot4 } from './WorkerBot'
 import { ShopperSpinner } from './ShopperBot'
 import { Loader } from './Loader'
+import { ImmersAvatar } from './ImmersAvatar'
+import { ImmersLoginPrompt } from './ImmersLoginPrompt'
 
+ImmersHUD.Register()
+const tokenCaught = catchToken()
 const waveObjName = "Assembly-2001_5";
 const debug = new URLSearchParams(window.location.search).has('debug');
 const sunPosition = [-1, 0.1, -1]
 const qPI = Math.PI / 4
-
+const localImmer = window.location.hostname === 'localhost' ? 'localhost:8081' : 'immers.space'
 
 export default function App() {
   const [waypoints, setWaypoints] = useState([])
   const [currentWaypoint, setCurrentWaypoint] = useState(0)
   const [projectHoverActive, setProjectHoverActive] = useState(false)
   const [showUnseenVideo, setShowUnseenVideo] = useState(false)
+  const hud = useRef(null)
+
   const handleWaveClick = (event) => {
     if (event.object.name === waveObjName) {
       event.stopPropagation();
@@ -37,6 +44,9 @@ export default function App() {
     if (event.target.classList.contains('overlay')) {
       setShowUnseenVideo(false);
     }
+  }
+  if (tokenCaught) {
+    return <Loader />
   }
   return (
     <>
@@ -99,22 +109,18 @@ export default function App() {
                       <a href="https://web.immers.space/metaverse-design-service">get started with Immers Space consulting</a>.
                     </p>
                   </AtWaypoint>
-                  <AtWaypoint waypoints={waypoints} i={3} offset={2} height={1.2} before={0.2} after={0.1}
-                              heading='Free Software for a Free Metaverse'>
+                  <AtWaypoint waypoints={waypoints} i={3} offset={2} height={1.75} before={0.2} after={0.1}
+                              heading='Connecting Across the Metaverse'>
                     <p>
-                      We're disappointed in the state of the Social Web.
-                      We believe that closed platforms designed to manipulate and sell our attention
-                      bring out the very worst in us, and that the rigid demands of centralized algorithms
-                      and app store reviews stifle creativity and freedom.
+                      The <a href="https://github.com/immers-space/immers">Immers Server</a> allows
+                      people to connect across different platforms using open standards. You can bring
+                      your own identity to different virtual worlds and share your location with your friends.
+                      For world creators, the Immers Server provides a complete IAM solution to easily
+                      connect your space into the federated network of immers.
                     </p>
-                    <p>
-                      Our solution is free, open-source, standards-based, self-hostable, and federated.
-                      Immers software empowers any creator to join a decentralized Immersive Web network
-                      without needing anyone's permission. Connections between immers arise from natural
-                      human interaction when immersers discover your site and share it with their friends.
-                    </p>
-                    <p><a href="https://github.com/immers-space">Learn how to connect your project to the metaverse.</a></p>
+                    <ImmersLoginPrompt currentWaypoint={currentWaypoint} hud={hud} />
                   </AtWaypoint>
+                  <ImmersAvatar position={[2.36, 0, -2.02]} />
                   <AtWaypoint waypoints={waypoints} i={4} offset={2} height={1.2} before={0.2} after={0.1}
                               heading='Use Cases'>
                     <p className='center'>
@@ -172,6 +178,12 @@ export default function App() {
           </ScrollControls>
         </Suspense>
       </Canvas>
+      <immers-hud
+        ref={hud}
+        position='bottom-right'
+        local-immer={localImmer}
+        allow-storage
+      />
       <Loader />
       {showUnseenVideo && (
         <div className='overlay' onClick={handleCloseVideo}>
