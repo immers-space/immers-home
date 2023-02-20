@@ -78,94 +78,92 @@ export default function App() {
               <NiceFreeTreasures position={[2, 0, 7.5]} scale={0.015} setIsActive={setProjectHoverActive} />
               <Ocean position={[0, -0.75, 0]} sunPosition={sunPosition} />
               {waypoints.length && (
-                <>
-                  <WaypointPath waypoints={waypoints} height={1.2} debug={debug} setCurrentWaypoint={setCurrentWaypoint} />
-                  <AtWaypoint waypoints={waypoints} i={0} height={1.2} offset={-5} before={0} after={0.79} />
-                  <AtWaypoint waypoints={waypoints} i={1} height={1.2} offset={2} before={0.11} after={0.35}
-                              heading='Boutique 3D Web development with a purpose'>
-                    <p>
-                      We dream of a democratized new era of the Web where creators own their content,
-                      users own their data, and no single entity exhibits undue influence on the community as a whole.
-                    </p>
-                    <p>
-                      As a <a target="_blank" rel="noreferrer" href="https://disco.coop">DisCO</a> cooperative, we use the proceeds from
-                      our contract work to fund development of open-source software that breaks down
-                      walls between platforms and returns control to users and creators.
-                    </p>
-                    <p>
-                      <a href="https://web.immers.space/about-us">Learn more about our company</a>
-                    </p>
-                  </AtWaypoint>
-                  <AtWaypoint waypoints={waypoints} i={2} height={0.45} offset={2} before={0.45} after={0.075}
-                              heading='Your Immersive Web vision, realized'>
-                    <p>
-                      As industry veterans with expertise in three.js, Babylon JS, A-Frame, Hubs, React Three Fiber, and more,
-                      we can make your interactive experience come to life on the Web, working instantly on any device
-                      from mobile phone to virtual reality.
-                    </p>
-                    <p>
-                      Click the Great (Vapor)Wave art on the wall above to watch video about how we helped
-                      performance artist Tiffany Trenda bring her Un/Seen performance to a virtual audience or{" "}
-                      <a href="https://web.immers.space/metaverse-design-service">get started with Immers Space consulting</a>.
-                    </p>
-                  </AtWaypoint>
-                  <AtWaypoint waypoints={waypoints} i={3} offset={2} height={1.75} before={0.2} after={0.1}
-                              heading='Connecting Across the Metaverse'>
-                    <p>
-                      The <a href="https://github.com/immers-space/immers">Immers Server</a> allows
-                      people to connect across different platforms using open standards. You can bring
-                      your own identity to different virtual worlds and share your location with your friends.
-                      For world creators, the Immers Server provides a complete IAM solution to easily
-                      connect your space into the federated network of immers.
-                    </p>
-                    <ImmersLoginPrompt currentWaypoint={currentWaypoint} hud={hud} />
-                  </AtWaypoint>
-                  <ImmersAvatar position={[2.36, 0, -2.02]} />
-                  <AtWaypoint waypoints={waypoints} i={4} offset={2} height={1.2} before={0.2} after={0.2}
-                              heading='Use Cases'>
-                    <p className='center'>
-                      Let's explore some use cases for immersive 3D Websites.
-                    </p>
-                  </AtWaypoint>
-                  <AtWaypoint waypoints={waypoints} i={5} offset={2} height={1.2} before={0.2} after={0.33}
-                              heading='Remote Collaboration'>
-                    <p>
-                      While remote work grows in popularity, physical distance needn't be a barrier to
-                      effective collaboration thanks to virtual spaces. We can help build your perfect
-                      environment using leading real-time virtual collaboration platforms including{" "}
-                      <a href="https://learn.framevr.io" target="_blank" rel="noreferrer">Frame</a> and{" "}
-                      <a href="https://hubs.mozilla.com/cloud" target="_blank" rel="noreferrer">Mozilla Hubs</a>.
-                    </p>
-                  </AtWaypoint>
-                  <group position={[-3.25, 0.75, 4.25]} visible={currentWaypoint > 3}>
-                    <WorkerBot1 position={[-0.75, 0, -0.75]} rotation={[0, qPI, 0]} show={Math.round(currentWaypoint) === 5} />
-                    <WorkerBot2 position={[0.75, 0, 0.75]} rotation={[0,  5 * qPI, 0]} show={Math.round(currentWaypoint)  === 5} />
-                    <WorkerBot3 position={[-0.75, 0, 0.75]} rotation={[0, 3 * qPI, 0]} show={Math.round(currentWaypoint)  === 5} />
-                    <WorkerBot4 position={[0.75, 0, -0.75]} rotation={[0,  -1 * qPI, 0]} show={Math.round(currentWaypoint)  === 5} />
-                  </group>
-                  <AtWaypoint waypoints={waypoints} i={6} offset={2} height={1} before={0.2} after={0.33}
-                              heading='Social Immersive Retail'>
-                    <p>
-                      While online shopping provides convenience and, in pandemic times, safety,
-                      today’s e-commerce solutions lack the social and personal aspects of in-store shopping
-                      which have been shown to increase sales.
-                    </p>
-                  </AtWaypoint>
-                  <AtWaypoint waypoints={waypoints} i={7} offset={2} height={0.3} before={0.3} after={0.1}
-                              heading='Social Immersive Retail'>
-                    <p>
-                      What if friends could meet up virtually to shop a digital twin of your store together?
-                      What if a live sales representative could join them when needed to answer questions and close the sale?
-                      We can help you transform your e-commerce for the metaverse age.
-                    </p>
-                    <p>
-                      <a href="https://web.immers.space/metaverse-design-service/">Contact us for a free consultation</a>.
-                    </p>
-                  </AtWaypoint>
-                  {currentWaypoint > 6 && (
-                    <ShopperSpinner position={[-5.25, 0.75, 0.6]} rotation={[0, 1.2, 0]} />
-                  )}
-                </>
+                <WaypointPath waypoints={waypoints} height={1.2} debug={debug} setCurrentWaypoint={setCurrentWaypoint} />
+              )}
+              <AtWaypoint waypoints={waypoints} i={0} height={1.2} offset={-5} before={0} after={0.79} />
+              <AtWaypoint waypoints={waypoints} i={1} height={1.2} offset={2} before={0.11} after={0.35}
+                          heading='Boutique 3D Web development with a purpose'>
+                <p>
+                  We dream of a democratized new era of the Web where creators own their content,
+                  users own their data, and no single entity exhibits undue influence on the community as a whole.
+                </p>
+                <p>
+                  As a <a target="_blank" rel="noreferrer" href="https://disco.coop">DisCO</a> cooperative, we use the proceeds from
+                  our contract work to fund development of open-source software that breaks down
+                  walls between platforms and returns control to users and creators.
+                </p>
+                <p>
+                  <a href="https://web.immers.space/about-us">Learn more about our company</a>
+                </p>
+              </AtWaypoint>
+              <AtWaypoint waypoints={waypoints} i={2} height={0.45} offset={2} before={0.45} after={0.075}
+                          heading='Your Immersive Web vision, realized'>
+                <p>
+                  As industry veterans with expertise in three.js, Babylon JS, A-Frame, Hubs, React Three Fiber, and more,
+                  we can make your interactive experience come to life on the Web, working instantly on any device
+                  from mobile phone to virtual reality.
+                </p>
+                <p>
+                  Click the Great (Vapor)Wave art on the wall above to watch video about how we helped
+                  performance artist Tiffany Trenda bring her Un/Seen performance to a virtual audience or{" "}
+                  <a href="https://web.immers.space/metaverse-design-service">get started with Immers Space consulting</a>.
+                </p>
+              </AtWaypoint>
+              <AtWaypoint waypoints={waypoints} i={3} offset={2} height={1.75} before={0.2} after={0.1}
+                          heading='Connecting Across the Metaverse'>
+                <p>
+                  The <a href="https://github.com/immers-space/immers">Immers Server</a> allows
+                  people to connect across different platforms using open standards. You can bring
+                  your own identity to different virtual worlds and share your location with your friends.
+                  For world creators, the Immers Server provides a complete IAM solution to easily
+                  connect your space into the federated network of immers.
+                </p>
+                <ImmersLoginPrompt currentWaypoint={currentWaypoint} hud={hud} />
+              </AtWaypoint>
+              <ImmersAvatar position={[2.36, 0, -2.02]} />
+              <AtWaypoint waypoints={waypoints} i={4} offset={2} height={1.2} before={0.2} after={0.2}
+                          heading='Use Cases'>
+                <p className='center'>
+                  Let's explore some use cases for immersive 3D Websites.
+                </p>
+              </AtWaypoint>
+              <AtWaypoint waypoints={waypoints} i={5} offset={2} height={1.2} before={0.2} after={0.33}
+                          heading='Remote Collaboration'>
+                <p>
+                  While remote work grows in popularity, physical distance needn't be a barrier to
+                  effective collaboration thanks to virtual spaces. We can help build your perfect
+                  environment using leading real-time virtual collaboration platforms including{" "}
+                  <a href="https://learn.framevr.io" target="_blank" rel="noreferrer">Frame</a> and{" "}
+                  <a href="https://hubs.mozilla.com/cloud" target="_blank" rel="noreferrer">Mozilla Hubs</a>.
+                </p>
+              </AtWaypoint>
+              <group position={[-3.25, 0.75, 4.25]} visible={currentWaypoint > 3}>
+                <WorkerBot1 position={[-0.75, 0, -0.75]} rotation={[0, qPI, 0]} show={Math.round(currentWaypoint) === 5} />
+                <WorkerBot2 position={[0.75, 0, 0.75]} rotation={[0,  5 * qPI, 0]} show={Math.round(currentWaypoint)  === 5} />
+                <WorkerBot3 position={[-0.75, 0, 0.75]} rotation={[0, 3 * qPI, 0]} show={Math.round(currentWaypoint)  === 5} />
+                <WorkerBot4 position={[0.75, 0, -0.75]} rotation={[0,  -1 * qPI, 0]} show={Math.round(currentWaypoint)  === 5} />
+              </group>
+              <AtWaypoint waypoints={waypoints} i={6} offset={2} height={1} before={0.2} after={0.33}
+                          heading='Social Immersive Retail'>
+                <p>
+                  While online shopping provides convenience and, in pandemic times, safety,
+                  today’s e-commerce solutions lack the social and personal aspects of in-store shopping
+                  which have been shown to increase sales.
+                </p>
+              </AtWaypoint>
+              <AtWaypoint waypoints={waypoints} i={7} offset={2} height={0.3} before={0.3} after={0.1}
+                          heading='Social Immersive Retail'>
+                <p>
+                  What if friends could meet up virtually to shop a digital twin of your store together?
+                  What if a live sales representative could join them when needed to answer questions and close the sale?
+                  We can help you transform your e-commerce for the metaverse age.
+                </p>
+                <p>
+                  <a href="https://web.immers.space/metaverse-design-service/">Contact us for a free consultation</a>.
+                </p>
+              </AtWaypoint>
+              {currentWaypoint > 6 && (
+                <ShopperSpinner position={[-5.25, 0.75, 0.6]} rotation={[0, 1.2, 0]} />
               )}
             </group>
             <Scroll html style={{ width: '100%' }}>
@@ -247,6 +245,9 @@ function AtWaypoint({waypoints, i, height, offset, before, after, heading, child
     window.location.hash = `waypoint${i}`;
   }, [i])
   useEffect(() => {
+    if (!waypoint) {
+      return
+    }
     const group = ref.current
     group.position.copy(waypoint.position)
     group.position.y += height
