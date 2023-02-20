@@ -121,7 +121,7 @@ export default function App() {
                     <ImmersLoginPrompt currentWaypoint={currentWaypoint} hud={hud} />
                   </AtWaypoint>
                   <ImmersAvatar position={[2.36, 0, -2.02]} />
-                  <AtWaypoint waypoints={waypoints} i={4} offset={2} height={1.2} before={0.2} after={0.1}
+                  <AtWaypoint waypoints={waypoints} i={4} offset={2} height={1.2} before={0.2} after={0.2}
                               heading='Use Cases'>
                     <p className='center'>
                       Let's explore some use cases for immersive 3D Websites.
