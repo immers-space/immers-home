@@ -23,7 +23,8 @@
     "build": "react-scripts build",
     "build-wp": "PUBLIC_URL=/wp-content/reactpress/apps/immers-home/build react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "optimize": "find raw/ -name *.glb -exec bash -c 'fn=\"{}\"; gltfpack -i \"$fn\" -o \"${fn/raw/src\\/assets}\" -cc -tc -mi -si 0.5 -kn -ke' \\;"
   },
   "eslintConfig": {
     "extends": [

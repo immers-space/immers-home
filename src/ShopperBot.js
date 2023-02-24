@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useGLTF } from "@react-three/drei";
 import { useSpring, animated, config } from '@react-spring/three'
 
 import bot1 from "./assets/shoppers/1.glb"
 import bot2 from "./assets/shoppers/2.glb"
 import bot3 from "./assets/shoppers/3.glb"
+import { useCompressedGLTF } from "./util/useCompressedGLTF";
 // import bot4 from "./assets/shoppers/4.glb"
 
 const count = 3
@@ -13,9 +13,9 @@ const gap = 2 * Math.PI / count
 const period = 3000
 
 export function ShopperSpinner(props) {
-  const shopper1 = useGLTF(bot1)
-  const shopper2 = useGLTF(bot2)
-  const shopper3 = useGLTF(bot3)
+  const shopper1 = useCompressedGLTF(bot1)
+  const shopper2 = useCompressedGLTF(bot2)
+  const shopper3 = useCompressedGLTF(bot3)
   const [currentShopper, setCurrentShopper] = useState(0)
   const { rotation } = useSpring({
     rotation: [0, currentShopper * gap, 0],
@@ -44,10 +44,3 @@ function onCircle (radius, angle) {
   const rotation = [0, -1 * angle + Math.PI / 2, 0]
   return { position, rotation }
 }
-
-useGLTF.preload(bot1);
-useGLTF.preload(bot2);
-useGLTF.preload(bot3);
-// useGLTF.preload(bot4);
-
-

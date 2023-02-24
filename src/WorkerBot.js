@@ -1,11 +1,11 @@
 import React from "react";
-import { useGLTF } from "@react-three/drei";
 import { useSpring, animated, config } from '@react-spring/three'
 
 import bot1 from "./assets/bots/1.glb"
 import bot2 from "./assets/bots/2.glb"
 import bot3 from "./assets/bots/3.glb"
 import bot4 from "./assets/bots/4.glb"
+import { useCompressedGLTF } from "./util/useCompressedGLTF";
 
 function WorkerBot ({ gltf, show, position, ...props  }) {
   const start = position.slice()
@@ -25,37 +25,29 @@ function WorkerBot ({ gltf, show, position, ...props  }) {
 }
 
 export function WorkerBot1(props) {
-  const gltf = useGLTF(bot1);
+  const gltf = useCompressedGLTF(bot1);
   return (
     <WorkerBot gltf={gltf} {...props} />
   )
 }
 
 export function WorkerBot2(props) {
-  const gltf = useGLTF(bot2);
+  const gltf = useCompressedGLTF(bot2);
   return (
     <WorkerBot gltf={gltf} {...props} />
   );
 }
 
 export function WorkerBot3(props) {
-  const gltf = useGLTF(bot3);
+  const gltf = useCompressedGLTF(bot3);
   return (
     <WorkerBot gltf={gltf} {...props} />
   );
 }
 
 export function WorkerBot4(props) {
-  const gltf = useGLTF(bot4);
+  const gltf = useCompressedGLTF(bot4);
   return (
     <WorkerBot gltf={gltf} {...props} />
   );
 }
-
-
-useGLTF.preload(bot1);
-useGLTF.preload(bot2);
-useGLTF.preload(bot3);
-useGLTF.preload(bot4);
-
-

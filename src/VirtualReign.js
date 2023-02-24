@@ -1,13 +1,14 @@
 import React, { useCallback, useState } from "react";
-import { Text, useGLTF } from "@react-three/drei";
+import { Text } from "@react-three/drei";
 import { cursorPointer, font } from "./util/consts";
 import { useSpring, animated, config } from '@react-spring/three'
 
 
 import queen from "./assets/black_queen.glb"
+import { useCompressedGLTF } from "./util/useCompressedGLTF";
 
 export default function VirtualReign({ position, scale, setIsActive }) {
-  const gltf = useGLTF(queen)
+  const gltf = useCompressedGLTF(queen)
   const [hovered, setHovered] = useState(false)
   const { finalScale } = useSpring({
     finalScale: hovered ? scale * 1.15 : scale,
@@ -49,5 +50,3 @@ export default function VirtualReign({ position, scale, setIsActive }) {
     </group>
   )
 }
-
-useGLTF.preload(queen);

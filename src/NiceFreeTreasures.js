@@ -1,13 +1,14 @@
 import React, { useCallback, useState } from "react";
-import { Text, useGLTF } from "@react-three/drei";
+import { Text } from "@react-three/drei";
 import { cursorPointer, font } from "./util/consts";
 import { useSpring, animated, config } from '@react-spring/three'
 
 
 import chest from "./assets/chest.glb"
+import { useCompressedGLTF } from "./util/useCompressedGLTF";
 
 export default function NiceFreeTreasures({ position, scale, setIsActive }) {
-  const gltf = useGLTF(chest)
+  const gltf = useCompressedGLTF(chest)
   const [hovered, setHovered] = useState(false)
   const { finalScale } = useSpring({
     finalScale: hovered ? scale * 1.15 : scale,
@@ -50,5 +51,3 @@ export default function NiceFreeTreasures({ position, scale, setIsActive }) {
     </group>
   )
 }
-
-useGLTF.preload(chest);
