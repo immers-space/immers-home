@@ -49,6 +49,7 @@ code {
 
 #root h1 img {
   height: 96px;
+  width: 96px;
   vertical-align: text-bottom;
 }
 
@@ -113,6 +114,16 @@ code {
 #root .overlay iframe {
   max-width: 90%;
   max-height: 90%;
+}
+
+
+#root #simple-loader {
+  background: #acbfd0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 @keyframes floating {
