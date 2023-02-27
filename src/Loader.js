@@ -3,19 +3,29 @@ import React, { useEffect, useRef, useState } from "react"
 import logoDark from './assets/immers logo dark.png'
 
 const dataInterpolation = (p) => `Loading ${p.toFixed(2)}%`
-const fadeTime = 5000
-export function Loader() {
+const fadeTime = 2500
+const skipTime = 5000
+export function Loader({ handleSkipLoading, handleLoaderFinished }) {
   const { active, progress } = useProgress()
   const progressRef = useRef(0)
   const rafRef = useRef(0)
   const progressSpanRef = useRef(null)
+  const [firstRender, setFirstRender] = useState(true)
   const [shown, setShown] = useState(true)
+  const [skipShown, setSkipShown] = useState(false)
+  // avoid starting without loader and fading in
+  const loaderActive = firstRender || active
 
   useEffect(() => {
     let t
-    if (active !== shown) t = setTimeout(() => setShown(active), fadeTime)
+    if (!loaderActive) {
+      t = setTimeout(() => {
+        setShown(false)
+        handleLoaderFinished?.()
+      }, fadeTime)
+    }
     return () => clearTimeout(t)
-  }, [shown, active])
+  }, [loaderActive, handleLoaderFinished])
 
   const updateProgress = React.useCallback(() => {
     if (!progressSpanRef.current) return
@@ -30,8 +40,21 @@ export function Loader() {
     return () => cancelAnimationFrame(rafRef.current)
   }, [updateProgress])
 
+  useEffect(() => {
+    if (!loaderActive) {
+      // clears the timeout once loaded so skip btn doesn't pop-in during fade-out
+      return
+    }
+    const timer = setTimeout(() => setSkipShown(true), skipTime)
+    return () => clearTimeout(timer)
+  }, [loaderActive])
+
+  useEffect(() => {
+    setFirstRender(false)
+  }, [])
+
   return shown ? (
-    <div style={{ ...styles.container, opacity: active ? 1 : 0 }}>
+    <div style={{ ...styles.container, opacity: loaderActive ? 1 : 0, pointerEvents: loaderActive ? 'all' : 'none' }}>
       <h1>
         <img src={logoDark} alt="" />
           Immers Space
@@ -42,6 +65,12 @@ export function Loader() {
           <span ref={progressSpanRef} style={{ ...styles.data }} />
         </div>
       </div>
+      {skipShown && (
+        <div>
+          <p>This is taking a while...</p>
+          <button onClick={handleSkipLoading}>Skip 3D content and show the text</button>
+        </div>
+      )}
     </div>
   ) : null
 }
@@ -59,12 +88,12 @@ const styles = {
     alignItems: 'center',
     // justifyContent: 'center',
     transition: `opacity ${fadeTime}ms ease`,
-    zIndex: 1000,
-    pointerEvents: 'none'
+    zIndex: 50,
   },
   inner: {
     width: 100,
     height: 3,
+    marginBottom: 40,
     background: '#272727',
     textAlign: 'center',
   },
