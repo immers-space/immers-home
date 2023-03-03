@@ -94,10 +94,10 @@ export default function Scene() {
                 </group>
                 {/* Waypoint 7 */}
                 <ShopperSpinner position={[-5.25, 0.75, 0.6]} rotation={[0, 1.2, 0]} visible={currentWaypoint > 6} />
-              </Suspense>
-              {/* Waypoint 3 - separate suspend to avoid hiding whole scene when avatar updates */}
-              <Suspense fallback={null}>
-                <ImmersAvatar position={[2.36, 0, -2.02]} />
+                {/* Waypoint 3 - separate suspend to avoid hiding whole scene when avatar updates */}
+                <Suspense fallback={null}>
+                  <ImmersAvatar position={[2.36, 0, -2.02]} />
+                </Suspense>
               </Suspense>
               {waypoints.length && (
                 <WaypointPath waypoints={waypoints} height={1.2} debug={debug} setCurrentWaypoint={setCurrentWaypoint} />

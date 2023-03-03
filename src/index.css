@@ -148,6 +148,7 @@ code {
   inset: 0;
   overflow: auto;
   background-color: white;
+  padding-top: 80px;
 }
 
 #portal-2d.show {

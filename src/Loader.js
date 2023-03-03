@@ -4,7 +4,7 @@ import logoDark from './assets/immers logo dark.png'
 
 const dataInterpolation = (p) => `Loading ${p.toFixed(2)}%`
 const fadeTime = 2500
-const skipTime = 5000
+const skipTime = 10000
 export function Loader({ handleSkipLoading, handleLoaderFinished }) {
   const { active, progress } = useProgress()
   const progressRef = useRef(0)
