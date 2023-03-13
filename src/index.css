@@ -102,6 +102,10 @@ code {
   color: initial;
 }
 
+#root .html3d h2 a:focus-visible, #root a:focus-visible {
+  text-decoration: underline;
+}
+
 #root .overlay {
   position: fixed;
   display: flex;
