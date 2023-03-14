@@ -177,7 +177,6 @@ export default function Scene() {
                   <a href="https://web.immers.space/metaverse-design-service/">Contact us for a free consultation</a>.
                 </p>
               </AtWaypoint>
-
             </group>
             <Scroll html style={{ width: '100%' }}>
               <h1>
@@ -249,7 +248,7 @@ function AtWaypoint({waypoints, portal2D, i, height, offset, before, after, head
   const ref = useRef()
   const scroll = useScroll()
   const [visible, setVisible] = useState(false)
-  const [tabbable, setTabbable] = useState(false)
+  const [occluded, setOccluded] = useState(false)
   const scrollContainer = useRef(scroll.fixed)
   const headerLink = useRef()
   const scrollTo = useCallback(() => {
@@ -313,12 +312,19 @@ function AtWaypoint({waypoints, portal2D, i, height, offset, before, after, head
     <group ref={ref} visible={visible} {...props}>
       {/* Changing the portal on Html is buggy, so we recreate when portal changes */}
       {waypoint && (
-        <Html portal={scrollContainer} center className={c("html3d", { visible })}>
+        <Html
+          portal={scrollContainer}
+          // use our own onOcclude because the default breaks keyboard accessibility with display: none
+          onOcclude={setOccluded}
+          center
+          className={c("html3d", { visible })}
+          wrapperClass={c('html3dContainer', { occluded })}
+        >
           {content}
         </Html>
       )}
        {!waypoint && (
-        <Html portal={portal2D} center className={c("html3d", { visible })}>
+        <Html portal={portal2D} className={c("html3d", { visible })}>
           {content}
         </Html>
       )}
