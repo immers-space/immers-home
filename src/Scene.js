@@ -177,7 +177,6 @@ export default function Scene() {
                   <a href="https://web.immers.space/metaverse-design-service/">Contact us for a free consultation</a>.
                 </p>
               </AtWaypoint>
-
             </group>
             <Scroll html style={{ width: '100%' }}>
               <h1>
@@ -249,7 +248,9 @@ function AtWaypoint({waypoints, portal2D, i, height, offset, before, after, head
   const ref = useRef()
   const scroll = useScroll()
   const [visible, setVisible] = useState(false)
+  const [occluded, setOccluded] = useState(false)
   const scrollContainer = useRef(scroll.fixed)
+  const headerLink = useRef()
   const scrollTo = useCallback(() => {
     scroll.offset = i / (waypoints.length)
     scroll.el.scrollTop = (i / (waypoints.length)) * scroll.el.scrollHeight;
@@ -297,14 +298,36 @@ function AtWaypoint({waypoints, portal2D, i, height, offset, before, after, head
     setVisible(scroll.visible((i - before)  / segments, (before + after) / segments))
   })
   const headerId = `waypoint${i}-header`
+  const content = (
+    <section onFocus={handleFocus} onClick={evt => evt.stopPropagation()} aria-labelledby={headerId}>
+      <h2 id={headerId}>
+        <a ref={headerLink} href={`#waypoint${i}`}>
+          {heading}
+        </a>
+      </h2>
+      {children}
+    </section>
+  )
   return (
     <group ref={ref} visible={visible} {...props}>
-      <Html portal={waypoint ? scrollContainer : portal2D} center className={c("html3d", { visible })}>
-        <section onFocus={handleFocus} onClick={evt => evt.stopPropagation()} aria-labelledby={headerId}>
-          <h2 id={headerId}><a href={`#waypoint${i}`}>{heading}</a></h2>
-          {children}
-        </section>
-      </Html>
+      {/* Changing the portal on Html is buggy, so we recreate when portal changes */}
+      {waypoint && (
+        <Html
+          portal={scrollContainer}
+          // use our own onOcclude because the default breaks keyboard accessibility with display: none
+          onOcclude={setOccluded}
+          center
+          className={c("html3d", { visible })}
+          wrapperClass={c('html3dContainer', { occluded })}
+        >
+          {content}
+        </Html>
+      )}
+       {!waypoint && (
+        <Html portal={portal2D} className={c("html3d", { visible })}>
+          {content}
+        </Html>
+      )}
     </group>
   )
 }
