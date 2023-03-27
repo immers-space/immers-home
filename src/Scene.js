@@ -252,7 +252,6 @@ function AtWaypoint({waypoints, portal2D, i, height, offset, before, after, head
   const scrollContainer = useRef(scroll.fixed)
   const headerLink = useRef()
   const scrollTo = useCallback(() => {
-    scroll.offset = i / (waypoints.length)
     scroll.el.scrollTop = (i / (waypoints.length)) * scroll.el.scrollHeight;
   }, [scroll, i, waypoints])
   const handleFocus = useCallback(() => {
@@ -278,7 +277,7 @@ function AtWaypoint({waypoints, portal2D, i, height, offset, before, after, head
   useEffect(() => {
     if (window.location.hash === `#waypoint${i}`) {
       // needs a small delay after page load or else the scroll damping goes wild
-      const timer = window.setTimeout(scrollTo, 100)
+      const timer = window.setTimeout(scrollTo, 1000)
       return () => window.clearTimeout(timer)
     }
   }, [i, scrollTo])
