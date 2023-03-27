@@ -1,6 +1,6 @@
 @font-face {
-  font-family: 'AlegreyaSansSC';
-  src: url(./assets/AlegreyaSansSC-Regular.ttf) format('truetype');
+  font-family: 'PressStart2P-Regular';
+  src: url(./assets/PressStart2P-Regular.ttf) format('truetype');
 }
 
 html, body, #page-container, #et-main-area, #root {
@@ -39,7 +39,7 @@ code {
 } */
 
 #root h1 {
-  font-family: 'AlegreyaSansSC', sans-serif;
+  font-family: 'PressStart2P-Regular', sans-serif;
   text-align: center;
   margin-top: 200px;
   font-size: 96px;
@@ -67,8 +67,9 @@ code {
 }
 
 #root .html3d {
-  background-color: rgba(255, 255, 255, 0.95);
-  border: 2px solid #052464;
+  background-color: #9966FF;
+  border: 10px solid #CCCCFF;
+  color: white;
   border-radius: 5px;
   padding: 15px;
   width: 700px;
@@ -78,6 +79,9 @@ code {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.5s ease-in-out;
+  box-shadow:
+  0 0 0 10px white,
+  0 0 0 15px #000066;
 }
 
 #root .html3d.visible {
@@ -87,11 +91,17 @@ code {
 
 #root .html3d h4, .html3d h3, .html3d h2 {
   text-align: center;
+  font-family: 'PressStart2P-Regular';
 }
 
 #root .html3d p {
   text-align: justify;
 }
+
+#root .html3d p a {
+  color: #00FFFF;
+}
+
 
 #root .html3d p.center {
   text-align: center;
@@ -100,6 +110,8 @@ code {
 #root .html3d h2 a {
   text-decoration: none;
   color: initial;
+  font-size: 22px;
+  color: #00FFFF;
 }
 
 #root .overlay {
