@@ -29,6 +29,7 @@ const localImmer = window.location.hostname === 'localhost' ? 'localhost:8081' :
 export default function Scene() {
   const [waypoints, setWaypoints] = useState([])
   const [currentWaypoint, setCurrentWaypoint] = useState(0)
+  const previousWaypoint = useRef(0)
   const [projectHoverActive, setProjectHoverActive] = useState(false)
   const [showUnseenVideo, setShowUnseenVideo] = useState(false)
   const [show2D, setShow2D] = useState(false)
@@ -52,6 +53,14 @@ export default function Scene() {
   const handleLoaderFinished = () => {
     setShow2D(false)
   }
+
+  useEffect(() => {
+    if (currentWaypoint <= 0.5 && previousWaypoint.value > 0.5) {
+      // reset deep link when scrolling back to top
+      window.history.replaceState('', '', '#')
+    }
+    previousWaypoint.value = currentWaypoint
+  }, [currentWaypoint])
 
   return (
     <>
@@ -102,7 +111,6 @@ export default function Scene() {
               {waypoints.length && (
                 <WaypointPath waypoints={waypoints} height={1.2} debug={debug} setCurrentWaypoint={setCurrentWaypoint} />
               )}
-              <AtWaypoint waypoints={waypoints} i={0} height={1.2} offset={-5} before={0} after={0.79} />
               <AtWaypoint waypoints={waypoints} i={1} height={1.2} offset={2} before={0.11} after={0.35} portal2D={portal2D}
                           heading='Boutique 3D Web development with a purpose'>
                 <p>
