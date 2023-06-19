@@ -112,7 +112,7 @@ export default function Scene() {
                 <WaypointPath waypoints={waypoints} height={1.2} debug={debug} setCurrentWaypoint={setCurrentWaypoint} />
               )}
               <AtWaypoint waypoints={waypoints} i={1} height={1.2} offset={2} before={0.11} after={0.35} portal2D={portal2D}
-                          heading='Boutique 3D Web development with a purpose'>
+                          heading='Boutique 3D Web development with <br> a purpose'>
                 <p>
                   We dream of a democratized new era of the Web where creators own their content,
                   users own their data, and no single entity exhibits undue influence on the community as a whole.
